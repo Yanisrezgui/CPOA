@@ -5,13 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
+import dao.PeriodiciteDAO;
 import modele.Periodicite;
 import td1.Connexion;
 
-public class MySQLPeriodiciteDAO {
+public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
+	
+	
+	//TODO getInstance
+	
 	
 	public boolean create(Periodicite objet) {
+		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("insert into Periodicite (libelle) values(?)", Statement.RETURN_GENERATED_KEYS);
@@ -27,11 +34,12 @@ public class MySQLPeriodiciteDAO {
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans insert " + sqle.getMessage());
 		}
-		return true;
 		
+		return true;
 	}
 	
 	public boolean update(Periodicite objet) {
+		
 		try {
 			Connection laConnexion = Connexion.creeConnexion();
 			PreparedStatement req = laConnexion.prepareStatement("update Periodicite set libelle = ?");
@@ -42,11 +50,12 @@ public class MySQLPeriodiciteDAO {
 		}catch (SQLException sqle) {
 			// TODO : faire un message de d'exception
 		}
-		return true;
 		
+		return true;
 	}
 	
 	public boolean delete(Periodicite objet) {
+		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("delete from Periodicite where id_periodicite=?");
@@ -57,8 +66,21 @@ public class MySQLPeriodiciteDAO {
 		}catch (SQLException sqle) {
 			// TODO : faire un message de d'exception
 		}
-		return true;
 		
+		return true;
 	}
+
+	@Override
+	public Periodicite getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Periodicite> getByLibelle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

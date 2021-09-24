@@ -7,12 +7,13 @@ import dao.PeriodiciteDAO;
 import modele.Periodicite;
 
 public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
-
 	private static ListeMemoirePeriodiciteDAO instance;
-
 	private List<Periodicite> donnees;
 
-
+	/**
+	 * 
+	 * @return
+	 */
 	public static ListeMemoirePeriodiciteDAO getInstance() {
 
 		if (instance == null) {
@@ -22,6 +23,9 @@ public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
 		return instance;
 	}
 
+	/**
+	 * 
+	 */
 	private ListeMemoirePeriodiciteDAO() {
 
 		this.donnees = new ArrayList<Periodicite>();
@@ -33,11 +37,9 @@ public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
 
 	@Override
 	public boolean create(Periodicite objet) {
-
 		objet.setIdperiodicite(3);
-		// Ne fonctionne que si l'objet métier est bien fait...
-		while (this.donnees.contains(objet)) {
 
+		while (this.donnees.contains(objet)) {
 			objet.setIdperiodicite(objet.getIdperiodicite() + 1);
 		}
 		boolean ok = this.donnees.add(objet);
@@ -48,7 +50,6 @@ public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
 	@Override
 	public boolean update(Periodicite objet) {
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de modification d'un objet inexistant");
@@ -62,10 +63,8 @@ public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
 
 	@Override
 	public boolean delete(Periodicite objet) {
-
 		Periodicite supprime;
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de suppression d'un objet inexistant");
@@ -78,10 +77,10 @@ public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
 
 	@Override
 	public Periodicite getById(int id) {
-		// Ne fonctionne que si l'objet métier est bien fait...
+		// Ne fonctionne que si l'objet mï¿½tier est bien fait...
 		int idx = this.donnees.indexOf(new Periodicite(id, "test"));
 		if (idx == -1) {
-			throw new IllegalArgumentException("Aucun objet ne possède cet identifiant");
+			throw new IllegalArgumentException("Aucun objet ne possï¿½de cet identifiant");
 		} else {
 			return this.donnees.get(idx);
 		}
