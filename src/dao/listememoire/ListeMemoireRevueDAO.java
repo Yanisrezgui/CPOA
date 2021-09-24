@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.RevueDAO;
-import modele.Client;
 import modele.Revue;
 
 public class ListeMemoireRevueDAO implements RevueDAO {
@@ -29,19 +28,15 @@ public class ListeMemoireRevueDAO implements RevueDAO {
 	 */
 	private ListeMemoireRevueDAO() {
 		this.donnees = new ArrayList<Revue>();
-
-		//TODO voir le jeu de donnees 
-		//TODO voir pour mettre une periodicite 
-		this.donnees.add(new Revue(1, "Batman","Aventure",32,"beau", mensuel);
-		this.donnees.add(new Revue(2, "Stark","Tony",42,"rue des avengers",hebdomadaire)); 
+		
+		this.donnees.add(new Revue(1, "Batman","Aventure",32,"beau", null));
+		this.donnees.add(new Revue(2, "Stark","Tony",42,"rue des avengers",null)); 
 	}
 	
 	@Override
 	public Revue getById(int id) {
-		
-		// Ne fonctionne que si l'objet métier est bien fait...
-		//TODO voir pour la periodicite
-		int idx = this.donnees.indexOf(new Revue(id, "test","test",1,"test",test));
+
+		int idx = this.donnees.indexOf(new Revue(id, "test","test",1,"test",null));
 		if (idx == -1) {
 			throw new IllegalArgumentException("Aucun objet ne possède cet identifiant");
 		} else {
@@ -53,7 +48,6 @@ public class ListeMemoireRevueDAO implements RevueDAO {
 	public boolean create(Revue objet) {
 		objet.setIdrevue(3);
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
 		while (this.donnees.contains(objet)) {
 
 			objet.setIdrevue(objet.getIdrevue() + 1);
@@ -66,7 +60,6 @@ public class ListeMemoireRevueDAO implements RevueDAO {
 	@Override
 	public boolean update(Revue objet) {
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de modification d'un objet inexistant");
@@ -83,7 +76,6 @@ public class ListeMemoireRevueDAO implements RevueDAO {
 	public boolean delete(Revue objet) {
 		Revue supprime;
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de suppression d'un objet inexistant");

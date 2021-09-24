@@ -1,9 +1,15 @@
 package dao.mysql;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import dao.ClientDAO;
 import modele.Client;
+import td1.Connexion;
 
 public class MySQLClientDAO implements ClientDAO {
 
@@ -12,21 +18,46 @@ public class MySQLClientDAO implements ClientDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	@Override
 	public boolean create(Client objet) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Connection laConnexion = Connexion.creeConnexion();
+			PreparedStatement req = laConnexion.prepareStatement(
+					"insert into Client (nom, prenom, no_rue, voie, code_postal, ville, pays) values(?,?,?,?,?,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
+			req.setString(1, objet.getNom());
+			req.setString(2, objet.getPrenom());
+			req.setInt(3, objet.getNovoie());
+			req.setString(4, objet.getVoie());
+			req.setString(5, objet.getCodepostal());
+			req.setString(6, objet.getVille());
+			req.setString(7, objet.getPays());
+			int nbLignes = req.executeUpdate();
+			ResultSet res = req.getGeneratedKeys();
+			if (res.next()) {
+				int cle = res.getInt(1);
+			}
+			// Fermeture
+			Connexion.fermeture(laConnexion, req, res);
+		} catch (SQLException sqle) {
+			// TODO : faire un message de d'exception
+		}
+		return true;
 	}
+
 	@Override
 	public boolean update(Client objet) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 	@Override
 	public boolean delete(Client objet) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 	@Override
 	public List<Client> getByVille() {
 		// TODO Auto-generated method stub
