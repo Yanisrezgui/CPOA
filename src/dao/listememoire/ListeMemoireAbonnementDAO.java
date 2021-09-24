@@ -5,7 +5,6 @@ import java.util.List;
 
 import dao.AbonnementDAO;
 import modele.Abonnement;
-import modele.Revue;
 
 public class ListeMemoireAbonnementDAO implements AbonnementDAO {
 	private static ListeMemoireAbonnementDAO instance;
