@@ -48,14 +48,40 @@ public class MySQLClientDAO implements ClientDAO {
 
 	@Override
 	public boolean update(Client objet) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Connection laConnexion = Connexion.creeConnexion();
+			PreparedStatement req = laConnexion.prepareStatement(
+					"update Client set (nom, prenom, no_rue, voie, code_postal, ville, pays) values(?,?,?,?,?,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
+			req.setString(1, objet.getNom());
+			req.setString(2, objet.getPrenom());
+			req.setInt(3, objet.getNovoie());
+			req.setString(4, objet.getVoie());
+			req.setString(5, objet.getCodepostal());
+			req.setString(6, objet.getVille());
+			req.setString(7, objet.getPays());
+			int nbLignes = req.executeUpdate();
+			// Fermeture
+			Connexion.fermeture(laConnexion, req);
+		} catch (SQLException sqle) {
+			// TODO : faire un message de d'exception
+		}
+		return true;
 	}
 
 	@Override
 	public boolean delete(Client objet) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Connection laConnexion = Connexion.creeConnexion(); 
+			PreparedStatement req = laConnexion.prepareStatement("delete from Client where id_client=?");
+			req.setInt(1, objet.getIdclient());
+			int nbLignes = req.executeUpdate();
+			//Fermeture 
+			Connexion.fermeture(laConnexion, req);
+		}catch (SQLException sqle) {
+			// TODO : faire un message de d'exception
+		}
+		return true;
 	}
 
 	@Override
