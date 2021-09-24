@@ -1,17 +1,18 @@
 package modele;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Abonnement {
 	private int idabonnement;
-	private Date datedeb;
-	private Date datefin;
+	private LocalDate datedeb;
+	private LocalDate datefin;
 	private Client client;
 	private Revue revue;
 	
 	
 	//Contructeur
-	public Abonnement(int idabonnement, Date datedeb, Date datefin, Client client, Revue revue) {
+	public Abonnement(int idabonnement, LocalDate datedeb, LocalDate datefin, Client client, Revue revue) {
 		super();
 		this.idabonnement = idabonnement;
 		this.datedeb = datedeb;
@@ -27,16 +28,16 @@ public class Abonnement {
 	public void setIdabonnement(int idabonnement) {
 		this.idabonnement = idabonnement;
 	}
-	public Date getDatedeb() {
+	public LocalDate getDatedeb() {
 		return datedeb;
 	}
-	public void setDatedeb(Date datedeb) {
+	public void setDatedeb(LocalDate datedeb) {
 		this.datedeb = datedeb;
 	}
-	public Date getDatefin() {
+	public LocalDate getDatefin() {
 		return datefin;
 	}
-	public void setDatefin(Date datefin) {
+	public void setDatefin(LocalDate datefin) {
 		this.datefin = datefin;
 	}
 	public Client getClient() {
