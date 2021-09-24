@@ -90,4 +90,9 @@ public class MySQLClientDAO implements ClientDAO {
 		return null;
 	}
 
+	public static ClientDAO getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

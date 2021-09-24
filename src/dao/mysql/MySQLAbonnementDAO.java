@@ -77,5 +77,9 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public static AbonnementDAO getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

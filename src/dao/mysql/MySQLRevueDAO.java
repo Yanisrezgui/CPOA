@@ -88,4 +88,9 @@ public class MySQLRevueDAO implements RevueDAO{
 		return null;
 	}
 
+	public static RevueDAO getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
