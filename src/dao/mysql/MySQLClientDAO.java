@@ -12,6 +12,21 @@ import modele.Client;
 import td1.Connexion;
 
 public class MySQLClientDAO implements ClientDAO {
+	private static MySQLClientDAO instance;
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static ClientDAO getInstance() {
+		
+		if (instance == null) {
+			instance = new MySQLClientDAO();
+		}
+		
+		return instance;
+	}
 
 	@Override
 	public Client getById(int id) {
@@ -86,11 +101,6 @@ public class MySQLClientDAO implements ClientDAO {
 
 	@Override
 	public List<Client> getByVille() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static ClientDAO getInstance() {
 		// TODO Auto-generated method stub
 		return null;
 	}

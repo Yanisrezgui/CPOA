@@ -12,12 +12,24 @@ import modele.Abonnement;
 import td1.Connexion;
 
 public class MySQLAbonnementDAO implements AbonnementDAO {
-
+	private static MySQLAbonnementDAO instance;
+	
+	public static AbonnementDAO getInstance() {
+		
+		if (instance == null) {
+			instance = new MySQLAbonnementDAO();
+		}
+		
+		return instance;
+	}
+	
+	
 	@Override
 	public Abonnement getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	@Override
 	public boolean create(Abonnement objet) {
 		
@@ -39,6 +51,7 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 		
 		return true;
 	}
+	
 	@Override
 	public boolean update(Abonnement objet) {
 		
@@ -56,6 +69,7 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 		
 		return true;
 	}
+	
 	@Override
 	public boolean delete(Abonnement objet) {
 		
@@ -72,12 +86,9 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 		
 		return true;
 	}
+	
 	@Override
 	public List<Abonnement> getByDateDeb() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public static AbonnementDAO getInstance() {
 		// TODO Auto-generated method stub
 		return null;
 	}

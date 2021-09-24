@@ -12,9 +12,20 @@ import modele.Revue;
 import td1.Connexion;
 
 public class MySQLRevueDAO implements RevueDAO{
-
+	private static MySQLRevueDAO instance;
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
+	public static RevueDAO getInstance() {
+		
+		if (instance == null) {
+			instance = new MySQLRevueDAO();
+		}
+		
+		return instance;
+	}
 	
 	@Override
 	public Revue getById(int id) {
@@ -88,9 +99,5 @@ public class MySQLRevueDAO implements RevueDAO{
 		return null;
 	}
 
-	public static RevueDAO getInstance() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
