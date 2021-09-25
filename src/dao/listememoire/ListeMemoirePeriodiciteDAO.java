@@ -86,13 +86,10 @@ public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
 		}
 	}
 	
-	//TODO demander au prof
-	/*
 	@Override
 	public ArrayList<Periodicite> findAll() {
 		return (ArrayList<Periodicite>) this.donnees;
 	}
-	*/
 
 	@Override
 	public List<Periodicite> getByLibelle() {

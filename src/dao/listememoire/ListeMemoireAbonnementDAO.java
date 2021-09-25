@@ -5,6 +5,7 @@ import java.util.List;
 
 import dao.AbonnementDAO;
 import modele.Abonnement;
+import modele.Periodicite;
 
 public class ListeMemoireAbonnementDAO implements AbonnementDAO {
 	private static ListeMemoireAbonnementDAO instance;
@@ -94,6 +95,11 @@ public class ListeMemoireAbonnementDAO implements AbonnementDAO {
 	public List<Abonnement> getByDateDeb() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Abonnement> findAll() {
+		return (ArrayList<Abonnement>) this.donnees;
 	}
 
 }

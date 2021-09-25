@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.ClientDAO;
@@ -101,6 +102,12 @@ public class MySQLClientDAO implements ClientDAO {
 
 	@Override
 	public List<Client> getByVille() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
