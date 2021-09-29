@@ -30,7 +30,19 @@ public class MySQLRevueDAO implements RevueDAO{
 	
 	@Override
 	public Revue getById(int id) {
-		// TODO Auto-generated method stub
+		
+		//TODO Voir si c'est pas mieux de passer en param l'objet abonnement  : getById(Abonnement objet)
+		try {
+			Connection laConnexion = Connexion.creeConnexion(); 
+			PreparedStatement req = laConnexion.prepareStatement("select from Revue where id_revue = ?");
+			req.setInt(1, id);
+			int nbLignes = req.executeUpdate();
+			//Fermeture 
+			Connexion.fermeture(laConnexion, req);
+		}catch (SQLException sqle) {
+			// TODO : faire un message de d'exception
+		}
+		
 		return null;
 	}
 	

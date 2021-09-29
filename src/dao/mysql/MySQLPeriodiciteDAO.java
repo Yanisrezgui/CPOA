@@ -9,14 +9,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.PeriodiciteDAO;
+import dao.RevueDAO;
 import modele.Periodicite;
 import td1.Connexion;
 
 public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
+	private static MySQLPeriodiciteDAO instance;
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public static PeriodiciteDAO getInstance() {
+		
+		if (instance == null) {
+			instance = new MySQLPeriodiciteDAO();
+		}
+		
+		return instance;
+	}
 	
-	//TODO getInstance
-	
+	@Override
+	public Periodicite getById(int id) {
+		
+		//TODO Voir si c'est pas mieux de passer en param l'objet abonnement  : getById(Abonnement objet)
+		try {
+			Connection laConnexion = Connexion.creeConnexion(); 
+			PreparedStatement req = laConnexion.prepareStatement("select from Periodicite where id_periodicite = ?");
+			req.setInt(1, id);
+			int nbLignes = req.executeUpdate();
+			//Fermeture 
+			Connexion.fermeture(laConnexion, req);
+		}catch (SQLException sqle) {
+			// TODO : faire un message de d'exception
+		}
+		
+		return null;
+	}
 	
 	public boolean create(Periodicite objet) {
 		
@@ -73,13 +102,7 @@ public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
 	
 	@Override
 	public ArrayList<Periodicite> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public Periodicite getById(int id) {
-		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("select (*) from Periodicite");

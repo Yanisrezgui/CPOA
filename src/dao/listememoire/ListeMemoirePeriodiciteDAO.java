@@ -27,7 +27,6 @@ public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
 	 * 
 	 */
 	private ListeMemoirePeriodiciteDAO() {
-
 		this.donnees = new ArrayList<Periodicite>();
 
 		this.donnees.add(new Periodicite(1, "Mensuel"));
