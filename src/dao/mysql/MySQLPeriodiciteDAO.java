@@ -70,24 +70,32 @@ public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
 		
 		return true;
 	}
-
+	
 	@Override
-	public Periodicite getById(int id) {
+	public ArrayList<Periodicite> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public Periodicite getById(int id) {
+		
+		try {
+			Connection laConnexion = Connexion.creeConnexion(); 
+			PreparedStatement req = laConnexion.prepareStatement("select (*) from Periodicite");
+			//Fermeture 
+			Connexion.fermeture(laConnexion, req);
+		}catch (SQLException sqle) {
+			// TODO : faire un message de d'exception
+		}
+		
+		return null;
+	}
+	
 	@Override
 	public List<Periodicite> getByLibelle() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public ArrayList findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 
 }

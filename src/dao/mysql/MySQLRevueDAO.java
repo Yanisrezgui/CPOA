@@ -95,16 +95,24 @@ public class MySQLRevueDAO implements RevueDAO{
 	}
 	
 	@Override
+	public ArrayList<Revue> findAll() {
+		
+		try {
+			Connection laConnexion = Connexion.creeConnexion(); 
+			PreparedStatement req = laConnexion.prepareStatement("select (*) from Revue");
+			//Fermeture 
+			Connexion.fermeture(laConnexion, req);
+		}catch (SQLException sqle) {
+			// TODO : faire un message de d'exception
+		}
+		
+		return null;
+	}
+	
+	@Override
 	public List<Revue> getByPeriodicite() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public ArrayList findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 }

@@ -87,6 +87,7 @@ public class MySQLClientDAO implements ClientDAO {
 
 	@Override
 	public boolean delete(Client objet) {
+		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("delete from Client where id_client=?");
@@ -100,16 +101,26 @@ public class MySQLClientDAO implements ClientDAO {
 		return true;
 	}
 
+
+	@Override
+	public ArrayList<Client> findAll() {
+		
+		try {
+			Connection laConnexion = Connexion.creeConnexion(); 
+			PreparedStatement req = laConnexion.prepareStatement("select (*) from Client");
+			//Fermeture 
+			Connexion.fermeture(laConnexion, req);
+		}catch (SQLException sqle) {
+			// TODO : faire un message de d'exception
+		}
+		
+		return null;
+	}
+
 	@Override
 	public List<Client> getByVille() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public ArrayList findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

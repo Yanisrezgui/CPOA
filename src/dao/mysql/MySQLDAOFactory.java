@@ -6,7 +6,6 @@ import dao.DAOFactory;
 import dao.RevueDAO;
 
 public class MySQLDAOFactory extends DAOFactory {
-	// page 38 cour 2
 	
 	@Override
 	public ClientDAO getClientDAO() {
