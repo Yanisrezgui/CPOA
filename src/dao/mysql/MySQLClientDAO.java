@@ -10,6 +10,7 @@ import java.util.List;
 
 import dao.ClientDAO;
 import modele.Client;
+import modele.Periodicite;
 import td1.Connexion;
 
 public class MySQLClientDAO implements ClientDAO {
@@ -32,7 +33,6 @@ public class MySQLClientDAO implements ClientDAO {
 	@Override
 	public Client getById(int id) {
 		
-		//TODO Voir si c'est pas mieux de passer en param l'objet abonnement  : getById(Abonnement objet)
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("select from Client where id_client = ?");
@@ -126,7 +126,7 @@ public class MySQLClientDAO implements ClientDAO {
 			// TODO : faire un message de d'exception
 		}
 		
-		return null;
+		return null ;
 	}
 
 	@Override
