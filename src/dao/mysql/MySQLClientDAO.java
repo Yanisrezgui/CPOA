@@ -133,7 +133,7 @@ public class MySQLClientDAO implements ClientDAO {
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans select" + sqle.getMessage());		}
 		
-		return null ;
+		return liste ;
 	}
 
 	@Override
