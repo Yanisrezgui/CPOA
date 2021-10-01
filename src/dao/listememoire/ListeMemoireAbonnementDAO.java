@@ -5,7 +5,6 @@ import java.util.List;
 
 import dao.AbonnementDAO;
 import modele.Abonnement;
-import modele.Periodicite;
 
 public class ListeMemoireAbonnementDAO implements AbonnementDAO {
 	private static ListeMemoireAbonnementDAO instance;
@@ -50,7 +49,6 @@ public class ListeMemoireAbonnementDAO implements AbonnementDAO {
 	public boolean create(Abonnement objet) {
 		objet.setIdabonnement(3);
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
 		while (this.donnees.contains(objet)) {
 
 			objet.setIdabonnement(objet.getIdabonnement() + 1);
@@ -63,7 +61,6 @@ public class ListeMemoireAbonnementDAO implements AbonnementDAO {
 	@Override
 	public boolean update(Abonnement objet) {
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de modification d'un objet inexistant");
@@ -79,7 +76,6 @@ public class ListeMemoireAbonnementDAO implements AbonnementDAO {
 	public boolean delete(Abonnement objet) {
 		Abonnement supprime;
 		
-		// Ne fonctionne que si l'objet métier est bien fait...
 		int idx = this.donnees.indexOf(objet);
 		if (idx == -1) {
 			throw new IllegalArgumentException("Tentative de suppression d'un objet inexistant");
@@ -92,14 +88,16 @@ public class ListeMemoireAbonnementDAO implements AbonnementDAO {
 	}
 	
 	@Override
+	public ArrayList<Abonnement> findAll() {
+		
+		return (ArrayList<Abonnement>) this.donnees;
+	}
+	
+	@Override
 	public List<Abonnement> getByDateDeb() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public ArrayList<Abonnement> findAll() {
-		return (ArrayList<Abonnement>) this.donnees;
-	}
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import dao.ClientDAO;
 import modele.Client;
-import modele.Periodicite;
 
 public class ListeMemoireClientDAO implements ClientDAO {
 	private static ListeMemoireClientDAO instance;
@@ -90,14 +89,15 @@ public class ListeMemoireClientDAO implements ClientDAO {
 	}
 	
 	@Override
+	public ArrayList<Client> findAll() {
+		
+		return (ArrayList<Client>) this.donnees;
+	}
+	
+	@Override
 	public List<Client> getByVille() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public ArrayList<Client> findAll() {
-		return (ArrayList<Client>) this.donnees;
 	}
 
 }

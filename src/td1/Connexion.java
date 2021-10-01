@@ -3,7 +3,6 @@ package td1;
 import java.sql.*;
 
 public class Connexion {
-	//Bonjour
 	
 	/** 
 	 * Creer la connexion à la BDD

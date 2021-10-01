@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.RevueDAO;
-import modele.Periodicite;
 import modele.Revue;
 
 public class ListeMemoireRevueDAO implements RevueDAO {
@@ -89,14 +88,15 @@ public class ListeMemoireRevueDAO implements RevueDAO {
 	}
 	
 	@Override
+	public ArrayList<Revue> findAll() {
+		
+		return (ArrayList<Revue>) this.donnees;
+	}
+	
+	@Override
 	public List<Revue> getByPeriodicite() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public ArrayList<Revue> findAll() {
-		return (ArrayList<Revue>) this.donnees;
 	}
 
 }

@@ -76,7 +76,7 @@ public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
 
 	@Override
 	public Periodicite getById(int id) {
-		// Ne fonctionne que si l'objet m�tier est bien fait...
+		
 		int idx = this.donnees.indexOf(new Periodicite(id, "test"));
 		if (idx == -1) {
 			throw new IllegalArgumentException("Aucun objet ne poss�de cet identifiant");
@@ -87,6 +87,7 @@ public class ListeMemoirePeriodiciteDAO implements PeriodiciteDAO {
 	
 	@Override
 	public ArrayList<Periodicite> findAll() {
+		
 		return (ArrayList<Periodicite>) this.donnees;
 	}
 
