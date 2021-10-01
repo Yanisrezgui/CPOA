@@ -30,24 +30,26 @@ public class MySQLRevueDAO implements RevueDAO{
 	
 	@Override
 	public Revue getById(int id) {
+		Revue revue = null;
 		
-		//TODO Voir si c'est pas mieux de passer en param l'objet abonnement  : getById(Abonnement objet)
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("select from Revue where id_revue = ?");
 			req.setInt(1, id);
-			int nbLignes = req.executeUpdate();
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req);
+			ResultSet res = req.executeQuery();
+			if(res.next()) {
+				revue = new Revue(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5), MySQLPeriodiciteDAO.getInstance().getById(res.getInt(6)));
+			}
 		}catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans select" + sqle.getMessage());
 		}
 		
-		return null;
+		return revue;
 	}
 	
 	@Override
 	public boolean create(Revue objet) {
+		int nbLignes = 0;
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
@@ -56,69 +58,70 @@ public class MySQLRevueDAO implements RevueDAO{
 			req.setString(2, objet.getDescription());
 			req.setFloat(3, objet.getTarifnumero());
 			req.setString(4, objet.getVisuel());
-			int nbLignes = req.executeUpdate();
+			nbLignes = req.executeUpdate();
 			ResultSet res = req.getGeneratedKeys();
 			if (res.next()) {
 				int cle = res.getInt(1);
+				objet.setIdrevue(cle);
 			}
-			//Fermeture
-			Connexion.fermeture(laConnexion, req, res);
 		}catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans insert " + sqle.getMessage());
 		}
 		
-		return true;
+		return nbLignes==1;
 	}
+	
 	@Override
 	public boolean update(Revue objet) {
+		int nbLignes = 0;
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
-			PreparedStatement req = laConnexion.prepareStatement("update Revue set (titre, description, tarif_numero, visuel) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement req = laConnexion.prepareStatement("update Revue set titre = ?, description = ?, tarif_numero = ?, visuel = ? ", Statement.RETURN_GENERATED_KEYS);
 			req.setString(1,objet.getTitre());	
 			req.setString(2,objet.getDescription());
 			req.setFloat(3, objet.getTarifnumero()); ;
 			req.setString(4, objet.getVisuel());
-			int nbLignes = req.executeUpdate();
-			//Fermeture
-			Connexion.fermeture(laConnexion, req);
+			nbLignes = req.executeUpdate();
 		}catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans update " + sqle.getMessage());
 		}
 		
-		return true;
+		return nbLignes==1;
 	}
 	
 	@Override
 	public boolean delete(Revue objet) {
+		int nbLignes = 0;
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("delete from Revue where id_revue=?");
 			req.setInt(1, objet.getIdrevue());
-			int nbLignes = req.executeUpdate();
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req);
+			nbLignes = req.executeUpdate();
 		}catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans delete " + sqle.getMessage());
 		}
 		
-		return true;
+		return nbLignes==1;
 	}
 	
 	@Override
 	public ArrayList<Revue> findAll() {
+		ArrayList<Revue> liste = new ArrayList<Revue>();
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("select (*) from Revue");
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req);
+			ResultSet res = req.executeQuery();
+			while (res.next()){
+				liste.add(new Revue(res.getInt("id_revue"), res.getString("titre"), res.getString("description"), res.getInt("tarif_numero"), res.getString("visuel"), MySQLPeriodiciteDAO.getInstance().getById(res.getInt(6))));
+			}
 		}catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans select" + sqle.getMessage());
 		}
 		
-		return null;
+		return liste;
 	}
 	
 	@Override

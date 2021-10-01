@@ -8,10 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.cj.protocol.Resultset;
-
 import dao.PeriodiciteDAO;
-import dao.RevueDAO;
 import modele.Periodicite;
 import td1.Connexion;
 
@@ -43,8 +40,6 @@ public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
 			if(res.next()) {
 				perio = new Periodicite(res.getInt(1),res.getString(2));
 			}
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req);
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans select" + sqle.getMessage());
 		}
@@ -60,14 +55,11 @@ public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
 			PreparedStatement req = laConnexion.prepareStatement("insert into Periodicite (libelle) values(?)", Statement.RETURN_GENERATED_KEYS);
 			req.setString(1,objet.getLibelle());
 			nbLignes = req.executeUpdate();
-			// Incrémentation id
 			ResultSet res = req.getGeneratedKeys();
 			if (res.next()) {
 				int cle = res.getInt(1);
 				objet.setIdperiodicite(cle);
 			}
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req, res);
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans insert " + sqle.getMessage());
 		}
@@ -83,8 +75,6 @@ public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
 			PreparedStatement req = laConnexion.prepareStatement("update Periodicite set libelle = ?");
 			req.setString(1, objet.getLibelle());
 			nbLignes = req.executeUpdate();
-			//Fermeture
-			Connexion.fermeture(laConnexion, req);
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans update " + sqle.getMessage());
 		}
@@ -93,19 +83,18 @@ public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
 	}
 	
 	public boolean delete(Periodicite objet) {
+		int nbLignes = 0;
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("delete from Periodicite where id_periodicite=?");
 			req.setInt(1, objet.getIdperiodicite());
-			int nbLignes = req.executeUpdate();
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req);
+			nbLignes = req.executeUpdate();
 		}catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans dele " + sqle.getMessage());
 		}
 		
-		return true;
+		return nbLignes==1;
 	}
 	
 	@Override
@@ -119,8 +108,6 @@ public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
 			while (res.next()){
 				liste.add(new Periodicite(res.getInt("id_periodicite"),res.getString("libelle")));
 			}
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req);
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans select" + sqle.getMessage());
 		}
