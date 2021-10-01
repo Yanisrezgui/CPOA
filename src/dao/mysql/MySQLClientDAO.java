@@ -32,23 +32,27 @@ public class MySQLClientDAO implements ClientDAO {
 
 	@Override
 	public Client getById(int id) {
+		Client client=null;
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("select from Client where id_client = ?");
 			req.setInt(1, id);
-			int nbLignes = req.executeUpdate();
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req);
+			ResultSet res = req.executeQuery();
+			if(res.next()) {
+				client = new Client(res.getInt(1),res.getString(2),res.getString(3),res.getInt(4),res.getString(5),res.getString(6),res.getString(7),res.getString(8));
+			}
 		}catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans select" + sqle.getMessage());
 		}
 		
-		return null;
+		return client;
 	}
 
 	@Override
 	public boolean create(Client objet) {
+		int nbLignes = 0;
+		
 		try {
 			Connection laConnexion = Connexion.creeConnexion();
 			PreparedStatement req = laConnexion.prepareStatement(
@@ -61,25 +65,27 @@ public class MySQLClientDAO implements ClientDAO {
 			req.setString(5, objet.getCodepostal());
 			req.setString(6, objet.getVille());
 			req.setString(7, objet.getPays());
-			int nbLignes = req.executeUpdate();
+			nbLignes = req.executeUpdate();
 			ResultSet res = req.getGeneratedKeys();
 			if (res.next()) {
 				int cle = res.getInt(1);
-			}
-			// Fermeture
-			Connexion.fermeture(laConnexion, req, res);
+				objet.setIdclient(cle);
+			}		
 		} catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans insert " + sqle.getMessage());
 		}
-		return true;
+		return nbLignes==1;
 	}
 
 	@Override
 	public boolean update(Client objet) {
+		int nbLignes = 0;
+		
 		try {
 			Connection laConnexion = Connexion.creeConnexion();
+			//TODO changer la requetes update correctement
 			PreparedStatement req = laConnexion.prepareStatement(
-					"update Client set (nom, prenom, no_rue, voie, code_postal, ville, pays) values(?,?,?,?,?,?,?)",
+					"update Client set nom=?, prenom=?, no_rue=?, voie=?, code_postal=?, ville=?, pays=?)",
 					Statement.RETURN_GENERATED_KEYS);
 			req.setString(1, objet.getNom());
 			req.setString(2, objet.getPrenom());
@@ -88,43 +94,44 @@ public class MySQLClientDAO implements ClientDAO {
 			req.setString(5, objet.getCodepostal());
 			req.setString(6, objet.getVille());
 			req.setString(7, objet.getPays());
-			int nbLignes = req.executeUpdate();
-			// Fermeture
-			Connexion.fermeture(laConnexion, req);
+			nbLignes = req.executeUpdate();
 		} catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans update " + sqle.getMessage());
 		}
-		return true;
+		return nbLignes==1;
 	}
 
 	@Override
 	public boolean delete(Client objet) {
+		int nbLignes = 0;
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("delete from Client where id_client=?");
 			req.setInt(1, objet.getIdclient());
-			int nbLignes = req.executeUpdate();
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req);
+			nbLignes = req.executeUpdate();
 		}catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
+			System.out.println("Pb dans dele " + sqle.getMessage());
 		}
-		return true;
+		return nbLignes==1;
 	}
 
 
 	@Override
 	public ArrayList<Client> findAll() {
+		ArrayList<Client> liste = new ArrayList<Client>();
+		
+		
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("select (*) from Client");
-			//Fermeture 
-			Connexion.fermeture(laConnexion, req);
+			ResultSet res = req.executeQuery();
+			while (res.next()){
+				liste.add(new Client(res.getInt("idclient"),res.getString("nom"),res.getString("prenom"),res.getInt("novoie"),res.getString("voie"),res.getString("codepostale"),res.getString("ville"),res.getString("pays")));
+			}
 		}catch (SQLException sqle) {
-			// TODO : faire un message de d'exception
-		}
+			System.out.println("Pb dans select" + sqle.getMessage());		}
 		
 		return null ;
 	}
