@@ -10,7 +10,6 @@ import java.util.List;
 
 import dao.ClientDAO;
 import modele.Client;
-import modele.Periodicite;
 import td1.Connexion;
 
 public class MySQLClientDAO implements ClientDAO {

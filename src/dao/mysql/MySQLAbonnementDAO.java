@@ -10,7 +10,6 @@ import java.util.List;
 
 import dao.AbonnementDAO;
 import modele.Abonnement;
-import modele.Client;
 import td1.Connexion;
 
 public class MySQLAbonnementDAO implements AbonnementDAO {
@@ -115,12 +114,13 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 			PreparedStatement req = laConnexion.prepareStatement("select (*) from Abonnement");
 			ResultSet res = req.executeQuery();
 			while (res.next()){
+				//TODO faire correctement le new Abonnement 
 				liste.add(new Abonnement(res.getInt("idabonnement"), null, null, null, null));
 			}
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans le select " + sqle.getMessage());
 		}
-		//TODO Voir pour le return en SQL
+		
 		return liste;
 	}
 	

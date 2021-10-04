@@ -29,7 +29,6 @@ public class ListeMemoireAbonnementDAO implements AbonnementDAO {
 	private ListeMemoireAbonnementDAO() {
 		this.donnees = new ArrayList<Abonnement>();
 
-		//TODO voir le jeu de donnees 
 		this.donnees.add(new Abonnement(1, null,null,null,null));
 		this.donnees.add(new Abonnement(2, null,null,null,null)); 
 	}
