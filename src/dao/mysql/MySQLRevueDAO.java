@@ -112,7 +112,7 @@ public class MySQLRevueDAO implements RevueDAO{
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
-			PreparedStatement req = laConnexion.prepareStatement("select (*) from Revue");
+			PreparedStatement req = laConnexion.prepareStatement("select * from Revue");
 			ResultSet res = req.executeQuery();
 			while (res.next()){
 				liste.add(new Revue(res.getInt("id_revue"), res.getString("titre"), res.getString("description"), res.getInt("tarif_numero"), res.getString("visuel"), MySQLPeriodiciteDAO.getInstance().getById(res.getInt(6))));

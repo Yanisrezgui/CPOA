@@ -110,7 +110,7 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
-			PreparedStatement req = laConnexion.prepareStatement("select (*) from Abonnement");
+			PreparedStatement req = laConnexion.prepareStatement("select * from Abonnement");
 			ResultSet res = req.executeQuery();
 			while (res.next()){
 				liste.add(new Abonnement(res.getInt("idabonnement"), res.getDate("date_debut").toLocalDate(), res.getDate("date_fin").toLocalDate(), MySQLClientDAO.getInstance().getById(res.getInt(4)), MySQLRevueDAO.getInstance().getById(res.getInt(5))));
