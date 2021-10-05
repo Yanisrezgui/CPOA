@@ -35,8 +35,7 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 			req.setInt(1, id);
 			ResultSet res = req.executeQuery();
 			if(res.next()) {
-				//TODO faire correctement le new Abonnement
-				Abo = new Abonnement(id, null, null, null, null);
+				Abo = new Abonnement(res.getInt(1), res.getDate(2).toLocalDate(), res.getDate(3).toLocalDate(), MySQLClientDAO.getInstance().getById(res.getInt(4)), MySQLRevueDAO.getInstance().getById(res.getInt(5)));
 			}
 			
 		}catch (SQLException sqle) {
@@ -114,8 +113,7 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 			PreparedStatement req = laConnexion.prepareStatement("select (*) from Abonnement");
 			ResultSet res = req.executeQuery();
 			while (res.next()){
-				//TODO faire correctement le new Abonnement 
-				liste.add(new Abonnement(res.getInt("idabonnement"), null, null, null, null));
+				liste.add(new Abonnement(res.getInt("idabonnement"), res.getDate("date_debut").toLocalDate(), res.getDate("date_fin").toLocalDate(), MySQLClientDAO.getInstance().getById(res.getInt(4)), MySQLRevueDAO.getInstance().getById(res.getInt(5))));
 			}
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans le select " + sqle.getMessage());
