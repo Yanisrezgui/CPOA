@@ -1,15 +1,27 @@
 package td1;
 
+import 
+
 import dao.mysql.MySQLClientDAO;
 import modele.Client;
 
 public class Main {
-	
-	Connexion connexion = new Connexion();
-	
-	MySQLClientDAO MC = new MySQLClientDAO();
-	
-	Client c1 = new Client(1, "Rezgui", "Yanis", 3, "rue du chaudron", "52422", "Paris", "France" );
-	Client c2 = new Client(2, "Batman", "Louis", 7, "rue de la loire", "36232", "Metz", "France" );
-	
+
+	public static void main(String[] args) {
+		Connexion connexion = new Connexion();
+		
+		MySQLClientDAO msqlcl = new MySQLClientDAO();
+		
+		Client c1 = new Client(1, "Manuel", "Croix", 4, "rue des frites", "36252","Paris","France");
+		Client c2 = new Client(2, "Picon", "Biere", 6, "rue des bourres", "75578","Metz","France");
+		
+		msqlcl.create(c1);
+		msqlcl.create(c2);
+		msqlcl.delete(c2);
+		msqlcl.update(c2);
+		msqlcl.findAll();
+		msqlcl.getById(1);
+		
+	}
+
 }
