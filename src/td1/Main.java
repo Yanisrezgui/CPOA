@@ -1,7 +1,5 @@
 package td1;
 
-import 
-
 import dao.mysql.MySQLClientDAO;
 import modele.Client;
 
@@ -18,7 +16,6 @@ public class Main {
 		msqlcl.create(c1);
 		msqlcl.create(c2);
 		msqlcl.delete(c2);
-		msqlcl.update(c2);
 		msqlcl.findAll();
 		msqlcl.getById(1);
 		
