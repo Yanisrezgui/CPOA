@@ -9,7 +9,7 @@ public class Revue {
 	private Periodicite periodicite;
 	
 	
-	//Constructeur
+	//Constructeur avec
 	public Revue(int idrevue, String titre, String description, float tarifnumero, String visuel,
 			Periodicite periodicite) {
 		super();
