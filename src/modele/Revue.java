@@ -32,13 +32,31 @@ public class Revue {
 		return titre;
 	}
 	public void setTitre(String titre) {
-		this.titre = titre;
+		
+		if(this.getTitre()==null) {
+			throw new IllegalArgumentException("Titre ne peut etre null");
+		}
+		else if("".equals(this.getTitre())) {
+			throw new IllegalArgumentException("Titre non valide");
+		}
+		else {
+			this.titre = titre;
+		}
 	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
-		this.description = description;
+		
+		if(this.getDescription()==null) {
+			throw new IllegalArgumentException("Description ne peut etre null");
+		}
+		else if("".equals(this.getDescription())) {
+			throw new IllegalArgumentException("Description non valide");
+		}
+		else {
+			this.description = description;
+		}
 	}
 	public float getTarifnumero() {
 		return tarifnumero;
@@ -50,13 +68,28 @@ public class Revue {
 		return visuel;
 	}
 	public void setVisuel(String visuel) {
-		this.visuel = visuel;
+		
+		if(this.getVisuel()==null) {
+			throw new IllegalArgumentException("Visuel ne peut etre null");
+		}
+		else if("".equals(this.getVisuel())) {
+			throw new IllegalArgumentException("Visuel non valide");
+		}
+		else {
+			this.visuel = visuel;
+		}
 	}
 	public Periodicite getPeriodicite() {
 		return periodicite;
 	}
 	public void setPeriodicite(Periodicite periodicite) {
-		this.periodicite = periodicite;
+		
+		if(this.getPeriodicite()==null) {
+			throw new IllegalArgumentException("Periodicite ne peut etre null");
+		}
+		else {
+			this.periodicite = periodicite;
+		}
 	}
 
 	

@@ -1,5 +1,8 @@
 package modele;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Periodicite {
 	private int idperiodicite;
 	private String libelle;
@@ -23,7 +26,21 @@ public class Periodicite {
 		return libelle;
 	}
 	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
+		Matcher matcherLibelle = pattern.matcher(this.getLibelle());
+		
+		if(this.getLibelle()==null) {
+			throw new IllegalArgumentException("Libelle ne peut etre null");
+		}
+		else if("".equals(this.getLibelle())) {
+			throw new IllegalArgumentException("Libelle non valide");
+		}
+		else if(!matcherLibelle.find()) {
+			throw new IllegalArgumentException("Libelle non valide");
+		}
+		else {	
+			this.libelle = libelle;
+		}
 	}
 
 	

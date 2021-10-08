@@ -31,25 +31,49 @@ public class Abonnement {
 		return datedeb;
 	}
 	public void setDatedeb(LocalDate datedeb) {
-		this.datedeb = datedeb;
+		
+		if(this.datedeb.isAfter(this.datefin)) {
+			throw new IllegalArgumentException("Date de debut non valide");
+		}
+		else {
+			this.datedeb = datedeb;
+		}
 	}
 	public LocalDate getDatefin() {
-		return datefin;
+			return datefin;
 	}
 	public void setDatefin(LocalDate datefin) {
-		this.datefin = datefin;
+		
+		if(this.datefin.isBefore(this.datedeb)) {
+			throw new IllegalArgumentException("Date de fin non valide");
+		}
+		else {
+			this.datefin = datefin;
+		}
 	}
 	public Client getClient() {
 		return client;
 	}
 	public void setClient(Client client) {
-		this.client = client;
+		
+		if(this.getClient()==null) {
+			throw new IllegalArgumentException("Client ne peut etre null");
+		}
+		else {
+			this.client = client;
+		}
 	}
 	public Revue getRevue() {
 		return revue;
 	}
 	public void setRevue(Revue revue) {
-		this.revue = revue;
+		
+		if(this.getRevue()==null) {
+			throw new IllegalArgumentException("Revue ne peut etre null");
+		}
+		else {
+			this.revue = revue;
+		}
 	}
 
 	
