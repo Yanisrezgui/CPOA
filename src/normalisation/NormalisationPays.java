@@ -6,7 +6,7 @@ public class NormalisationPays {
 		
 		String s1="belgique";
 		String s2="luxembourg";
-		String s3="Suisse";
+		String s3="suisse";
 		
 		pays=pays.trim();
 		
