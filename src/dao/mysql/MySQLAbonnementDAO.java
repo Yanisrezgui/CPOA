@@ -31,7 +31,7 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 	
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
-			PreparedStatement req = laConnexion.prepareStatement("select from Abonnement where id_abonnement = ?");
+			PreparedStatement req = laConnexion.prepareStatement("select * from Abonnement where id_abonnement = ?");
 			req.setInt(1, id);
 			ResultSet res = req.executeQuery();
 			if(res.next()) {
@@ -52,9 +52,11 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
-			PreparedStatement req = laConnexion.prepareStatement("insert into Abonnement (date_debut, date_fin) values(?,?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement req = laConnexion.prepareStatement("insert into Abonnement (date_debut, date_fin, id_client, id_revue) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			req.setDate(1, java.sql.Date.valueOf(objet.getDatedeb()));	
 			req.setDate(2, java.sql.Date.valueOf(objet.getDatefin()));
+			req.setInt(3, objet.getClient().getIdclient());
+			req.setInt(4, objet.getRevue().getIdrevue());
 			nbLignes = req.executeUpdate();
 			ResultSet res = req.getGeneratedKeys();
 			if (res.next()) {
@@ -113,7 +115,7 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 			PreparedStatement req = laConnexion.prepareStatement("select * from Abonnement");
 			ResultSet res = req.executeQuery();
 			while (res.next()){
-				liste.add(new Abonnement(res.getInt("idabonnement"), res.getDate("date_debut").toLocalDate(), res.getDate("date_fin").toLocalDate(), MySQLClientDAO.getInstance().getById(res.getInt(4)), MySQLRevueDAO.getInstance().getById(res.getInt(5))));
+				liste.add(new Abonnement(res.getInt("id_abonnement"), res.getDate("date_debut").toLocalDate(), res.getDate("date_fin").toLocalDate(), MySQLClientDAO.getInstance().getById(res.getInt(4)), MySQLRevueDAO.getInstance().getById(res.getInt(5))));
 			}
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans le select " + sqle.getMessage());

@@ -53,11 +53,12 @@ public class MySQLRevueDAO implements RevueDAO{
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
-			PreparedStatement req = laConnexion.prepareStatement("insert into Revue (titre, description, tarif_numero, visuel) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement req = laConnexion.prepareStatement("insert into Revue (titre, description, tarif_numero, visuel, id_periodicite) values(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			req.setString(1,objet.getTitre());
 			req.setString(2, objet.getDescription());
 			req.setFloat(3, objet.getTarifnumero());
 			req.setString(4, objet.getVisuel());
+			req.setInt(5, objet.getPeriodicite().getIdperiodicite());
 			nbLignes = req.executeUpdate();
 			ResultSet res = req.getGeneratedKeys();
 			if (res.next()) {

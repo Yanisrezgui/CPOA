@@ -61,7 +61,7 @@ public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
 				objet.setIdperiodicite(cle);
 			}
 		}catch (SQLException sqle) {
-			System.out.println("Pb dans insert " + sqle.getMessage());
+			System.out.println("Pb dans insert Periodicite " + sqle.getMessage());
 		}
 		
 		return nbLignes==1;

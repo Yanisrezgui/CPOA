@@ -13,7 +13,7 @@ public class MainRevue {
 		Periodicite p1=new Periodicite(1, "test");
 		Periodicite p2=new Periodicite(2, "test2");
 		
-		Revue r1=new Revue(4, "peaky blinders", "serie", 15,"oui", p1);
+		Revue r1=new Revue(1, "peaky blinders", "serie", 15,"oui", p1);
 		Revue r2=new Revue(2, "vikings", "serie", 20, "oui", p2);
 		
 		msqlrev.create(r1);

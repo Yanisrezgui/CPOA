@@ -35,7 +35,7 @@ public class MySQLClientDAO implements ClientDAO {
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
-			PreparedStatement req = laConnexion.prepareStatement("select from Client where id_client = (?)");
+			PreparedStatement req = laConnexion.prepareStatement("select * from Client where id_client = (?)");
 			req.setInt(1, id);
 			ResultSet res = req.executeQuery();
 			if(res.next()) {
@@ -54,9 +54,7 @@ public class MySQLClientDAO implements ClientDAO {
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion();
-			PreparedStatement req = laConnexion.prepareStatement(
-					"insert into Client (nom, prenom, no_rue, voie, code_postal, ville, pays) values(?,?,?,?,?,?,?)",
-					Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement req = laConnexion.prepareStatement("insert into Client (nom, prenom, no_rue, voie, code_postal, ville, pays) values(?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 			req.setString(1, objet.getNom());
 			req.setString(2, objet.getPrenom());
 			req.setInt(3, objet.getNovoie());
