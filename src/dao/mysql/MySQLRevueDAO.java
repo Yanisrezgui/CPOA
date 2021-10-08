@@ -34,7 +34,7 @@ public class MySQLRevueDAO implements RevueDAO{
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
-			PreparedStatement req = laConnexion.prepareStatement("select from Revue where id_revue = ?");
+			PreparedStatement req = laConnexion.prepareStatement("select * from Revue where id_revue = (?)");
 			req.setInt(1, id);
 			ResultSet res = req.executeQuery();
 			if(res.next()) {

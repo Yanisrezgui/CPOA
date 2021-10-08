@@ -35,7 +35,7 @@ public class MySQLClientDAO implements ClientDAO {
 		
 		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
-			PreparedStatement req = laConnexion.prepareStatement("select from Client where id_client = ?");
+			PreparedStatement req = laConnexion.prepareStatement("select from Client where id_client = (?)");
 			req.setInt(1, id);
 			ResultSet res = req.executeQuery();
 			if(res.next()) {
@@ -127,7 +127,7 @@ public class MySQLClientDAO implements ClientDAO {
 			PreparedStatement req = laConnexion.prepareStatement("select * from Client");
 			ResultSet res = req.executeQuery();
 			while (res.next()){
-				liste.add(new Client(res.getInt("idclient"),res.getString("nom"),res.getString("prenom"),res.getInt("novoie"),res.getString("voie"),res.getString("codepostale"),res.getString("ville"),res.getString("pays")));
+				liste.add(new Client(res.getInt("id_client"),res.getString("nom"),res.getString("prenom"),res.getInt("novoie"),res.getString("voie"),res.getString("codepostale"),res.getString("ville"),res.getString("pays")));
 			}
 		}catch (SQLException sqle) {
 			System.out.println("Pb dans select" + sqle.getMessage());		}
