@@ -20,4 +20,15 @@ public class TestNormalVille {
 			
 		}
 		
+		@Test
+		public void tiret() {
+			assertEquals("Montigny-lès-Metz", NormalisationVille.normVille("Montigny lès Metz"));
+		}
+		
+		@Test
+		public void accent() {
+			assertEquals("Montigny-lès-Metz", NormalisationVille.normVille("Montigny-les-Metz"));
+		}
+		
+		
 }
