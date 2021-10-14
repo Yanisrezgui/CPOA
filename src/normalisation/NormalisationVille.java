@@ -14,17 +14,23 @@ public class NormalisationVille {
 		//split() pour separer la chaine pour mettre les premieres lettre en maj 
 		// replaceall() remplace lès- en -lès-
 		
-		ville=ville.replaceAll("-lès","-lès-");		ville=ville.replaceAll("le","-le-");
-		ville=ville.replaceAll("lès-", "-lès-");	ville=ville.replaceAll("-le", "-le-");
-		ville=ville.replaceAll("lès","-lès-");		ville=ville.replaceAll("le-", "le");
+		ville=ville.replaceAll("-lès ","-lès-");		ville=ville.replaceAll(" le ","-le-");
+		ville=ville.replaceAll(" lès-", "-lès-");	ville=ville.replaceAll("-le ", "-le-");
+		ville=ville.replaceAll(" lès ","-lès-");	ville=ville.replaceAll(" le-", "le");
 		
-		ville=ville.replaceAll("-sous","-sous-");	ville=ville.replaceAll("-sur","-sur-");
-		ville=ville.replaceAll("sous", "-sous-");	ville=ville.replaceAll("sur", "-sur-");
-		ville=ville.replaceAll("sous-", "-sous-");	ville=ville.replaceAll("sur-", "-sur-");
-		
-		
+		ville=ville.replaceAll("-les ","-lès-");		ville=ville.replaceAll(" à ","-à-");	
+		ville=ville.replaceAll(" les-", "-lès-");	ville=ville.replaceAll("-à ","-à-");	
+		ville=ville.replaceAll(" les ","-lès-");	ville=ville.replaceAll(" à-","-à-");	
 		
 		
+		ville=ville.replaceAll(" a ","-à-");		ville=ville.replaceAll("-aux ", "-aux-");	
+		ville=ville.replaceAll(" a-","-à-");			ville=ville.replaceAll(" aux ", "-aux-");
+		ville=ville.replaceAll("-a ","-à-");			ville=ville.replaceAll(" aux-", "-aux-");
+		
+		
+		ville=ville.replaceAll("-sous ","-sous-");	ville=ville.replaceAll("-sur","-sur-");
+		ville=ville.replaceAll(" sous ", "-sous-");	ville=ville.replaceAll(" sur ", "-sur-");
+		ville=ville.replaceAll(" sous-", "-sous-");	ville=ville.replaceAll("sur-", "-sur-");
 		
 		
 		return ville;
@@ -48,8 +54,12 @@ public class NormalisationVille {
         	return CodePostal;
         }
         else  return CodePostal;
-      
-
-    }
+       }
+	
+	
+	public static String norNumVoie(String numVoie, String nomVoie) {
+		return numVoie+", "+nomVoie;
+		
+	}
 
 }
