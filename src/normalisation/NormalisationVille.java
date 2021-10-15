@@ -32,6 +32,7 @@ public class NormalisationVille {
 		ville=ville.replaceAll(" sous ", "-sous-");		ville=ville.replaceAll(" sur ", "-sur-");
 		ville=ville.replaceAll(" sous-", "-sous-");		ville=ville.replaceAll("sur-", "-sur-");
 		
+	
 		
 		return ville;
 		}
