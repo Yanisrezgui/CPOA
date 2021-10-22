@@ -27,4 +27,5 @@ public abstract class DAOFactory {
 	public abstract ClientDAO getClientDAO();
 	public abstract RevueDAO getRevueDAO();
 	public abstract AbonnementDAO getAbonnementDAO();
+	public abstract PeriodiciteDAO getPeriodiciteDAO();
 }
