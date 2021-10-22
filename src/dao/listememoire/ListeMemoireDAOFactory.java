@@ -22,7 +22,6 @@ public class ListeMemoireDAOFactory extends DAOFactory {
 	}
 	@Override
 	public PeriodiciteDAO getPeriodiciteDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return ListeMemoirePeriodiciteDAO.getInstance();
 	}
 }
