@@ -2,7 +2,8 @@ package td1;
 
 import java.time.LocalDate;
 
-import dao.mysql.MySQLAbonnementDAO;
+import dao.DAOFactory;
+import dao.Persistance;
 import modele.Abonnement;
 import modele.Client;
 import modele.Periodicite;
@@ -12,7 +13,8 @@ public class MainAbonnement {
 
 	public static void main(String[] args) {
 		
-		MySQLAbonnementDAO msqlabo= new MySQLAbonnementDAO();
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		
 		
 		Client c1 = new Client(1, "Manuel", "Croix", 4, "rue des frites", "36252","Paris","France");
 		Periodicite p1=new Periodicite(1, "test");
@@ -24,10 +26,14 @@ public class MainAbonnement {
 		Abonnement a1=new Abonnement(1, d1, d2, c1, r1);
 		Abonnement a2=new Abonnement(2, d1, d2, c1, r1);
 		 
-		msqlabo.create(a1);
-		msqlabo.create(a2);
-		msqlabo.findAll();
-		msqlabo.getById(2);
+		try {
+			dao.getAbonnementDAO().create(a1);
+			dao.getAbonnementDAO().create(a2);
+			dao.getAbonnementDAO().findAll();
+			dao.getAbonnementDAO().getById(2);
+		}catch(Exception sqle){
+			System.out.println(sqle.getMessage());
+		}
 
 	}
 
