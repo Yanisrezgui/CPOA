@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.Objects;
+
 public class Revue {
 	private int idRevue;
 	private String titre;
@@ -9,16 +11,22 @@ public class Revue {
 	private Periodicite periodicite;
 	
 	
-	//Constructeur avec
+	//Constructeur 
 	public Revue(int idrevue, String titre, String description, float tarifnumero, String visuel,
 			Periodicite periodicite) {
 		super();
-		this.idRevue = idrevue;
-		this.titre = titre;
-		this.description = description;
-		this.tarifnumero = tarifnumero;
-		this.visuel = visuel;
-		this.periodicite = periodicite;
+		this.setIdrevue(idrevue);
+		this.setTitre(titre);
+		this.setDescription(description);
+		this.setTarifnumero(tarifnumero);
+		this.setVisuel(visuel);
+		this.setPeriodicite(periodicite);
+	}
+	
+	public Revue( String titre, String description, float tarifnumero, String visuel,Periodicite periodicite) {
+		
+		this(-1,titre,description,tarifnumero,visuel,periodicite);
+		
 	}
 	
 	//Getters & Setters 
@@ -26,6 +34,9 @@ public class Revue {
 		return idRevue;
 	}
 	public void setIdrevue(int idrevue) {
+		
+		if(idrevue<-1)
+			throw new IllegalArgumentException("l'id doit etre positif");
 		this.idRevue = idrevue;
 	}
 	public String getTitre() {
@@ -67,6 +78,19 @@ public class Revue {
 	public String getVisuel() {
 		return visuel;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Revue other = (Revue) obj;
+		return idRevue == other.idRevue;
+	}
+
 	public void setVisuel(String visuel) {
 		
 		if(this.getVisuel()==null) {

@@ -1,6 +1,7 @@
 package modele;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Abonnement {
 	private int idAbonnement;
@@ -13,26 +14,52 @@ public class Abonnement {
 	//Contructeur
 	public Abonnement(int idAbonnement, LocalDate datedeb, LocalDate datefin, Client client, Revue revue) {
 		super();
-		this.idAbonnement = idAbonnement;
-		this.datedeb = datedeb;
-		this.datefin = datefin;
-		this.client = client;
-		this.revue = revue;
+		this.setIdabonnement(idAbonnement);
+		this.setDatedeb(datedeb);
+		this.setDatefin(datefin);
+		this.setClient(client);
+		this.setRevue(revue);
+	}
+	
+	//constructeur sans id
+	public Abonnement( LocalDate datedeb, LocalDate datefin, Client client, Revue revue) {
+		
+		this(-1,datedeb,datefin,client,revue);
 	}
 
 	//Getters & Setters
 	public int getIdabonnement() {
 		return idAbonnement;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Abonnement other = (Abonnement) obj;
+		return idAbonnement == other.idAbonnement;
+				
+	}
+
 	public void setIdabonnement(int idAbonnement) {
+		
+		if(idAbonnement<-1)
+			throw new IllegalArgumentException("l'identifiant doit etre positif");
+		else
 		this.idAbonnement = idAbonnement;
 	}
+	
 	public LocalDate getDatedeb() {
 		return datedeb;
 	}
 	public void setDatedeb(LocalDate datedeb) {
 		
-		if(this.datedeb.isAfter(this.datefin)) {
+		
+		if(this.datedeb.isAfter(this.datefin) && this.datefin!=null) {
 			throw new IllegalArgumentException("Date de debut non valide");
 		}
 		else {
@@ -44,7 +71,7 @@ public class Abonnement {
 	}
 	public void setDatefin(LocalDate datefin) {
 		
-		if(this.datefin.isBefore(this.datedeb)) {
+		if(this.datefin.isBefore(this.datedeb) && this.datedeb!=null) {
 			throw new IllegalArgumentException("Date de fin non valide");
 		}
 		else {
@@ -56,7 +83,7 @@ public class Abonnement {
 	}
 	public void setClient(Client client) {
 		
-		if(this.getClient()==null) {
+		if(client==null) {
 			throw new IllegalArgumentException("Client ne peut etre null");
 		}
 		else {
@@ -66,9 +93,10 @@ public class Abonnement {
 	public Revue getRevue() {
 		return revue;
 	}
+	
 	public void setRevue(Revue revue) {
 		
-		if(this.getRevue()==null) {
+		if(revue==null) {
 			throw new IllegalArgumentException("Revue ne peut etre null");
 		}
 		else {

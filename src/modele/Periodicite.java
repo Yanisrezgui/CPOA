@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,8 +12,14 @@ public class Periodicite {
 	//Contructeur
 	public Periodicite(int idPeriodicite, String libelle) {
 		super();
-		this.idPeriodicite = idPeriodicite;
-		this.libelle = libelle;
+		this.setIdperiodicite(idPeriodicite);
+		this.setLibelle(libelle);
+	}
+	
+	//constructeur sans id
+	public Periodicite( String libelle) {
+		
+		this(-1,libelle);
 	}
 
 	//Getters& Setters
@@ -20,8 +27,24 @@ public class Periodicite {
 		return idPeriodicite;
 	}
 	public void setIdperiodicite(int idPeriodicite) {
+		
+		if(idPeriodicite<-1)
+			throw new IllegalArgumentException("l'id doit etre positif");
 		this.idPeriodicite = idPeriodicite;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Periodicite other = (Periodicite) obj;
+		return idPeriodicite == other.idPeriodicite;
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}
