@@ -1,7 +1,7 @@
 package modele;
 
 public class Revue {
-	private int idrevue;
+	private int idRevue;
 	private String titre;
 	private String description;
 	private float tarifnumero;
@@ -13,7 +13,7 @@ public class Revue {
 	public Revue(int idrevue, String titre, String description, float tarifnumero, String visuel,
 			Periodicite periodicite) {
 		super();
-		this.idrevue = idrevue;
+		this.idRevue = idrevue;
 		this.titre = titre;
 		this.description = description;
 		this.tarifnumero = tarifnumero;
@@ -23,10 +23,10 @@ public class Revue {
 	
 	//Getters & Setters 
 	public int getIdrevue() {
-		return idrevue;
+		return idRevue;
 	}
 	public void setIdrevue(int idrevue) {
-		this.idrevue = idrevue;
+		this.idRevue = idrevue;
 	}
 	public String getTitre() {
 		return titre;
@@ -96,7 +96,7 @@ public class Revue {
 	
 	@Override
 	public String toString() {
-		return "Revue [idrevue=" + idrevue + ", titre=" + titre + ", description=" + description + ", tarifnumero="
+		return "Revue [idrevue=" + idRevue + ", titre=" + titre + ", description=" + description + ", tarifnumero="
 				+ tarifnumero + ", visuel=" + visuel + ", periodicite=" + periodicite + "]";
 	}
 	

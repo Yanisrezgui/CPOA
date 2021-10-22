@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Client {
-	private int idclient;
+	private int idClient;
 	private String nom;
 	private String prenom;
 	private int novoie;
@@ -15,10 +15,10 @@ public class Client {
 	
 	
 	//Constructeur
-	public Client(int idclient, String nom, String prenom, int novoie, String voie, String codepostal, String ville,
+	public Client(int idClient, String nom, String prenom, int novoie, String voie, String codepostal, String ville,
 			String pays) {
 		super();
-		this.idclient = idclient;
+		this.idClient = idClient;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.novoie = novoie;
@@ -30,10 +30,10 @@ public class Client {
 
 	//Getters & Setters
 	public int getIdclient() {
-		return idclient;
+		return idClient;
 	}
-	public void setIdclient(int idclient) {
-		this.idclient = idclient;
+	public void setIdclient(int idClient) {
+		this.idClient = idClient;
 	}
 	public String getNom() {
 		return nom;
@@ -148,7 +148,7 @@ public class Client {
 	
 	@Override
 	public String toString() {
-		return "Client [idclient=" + idclient + ", nom=" + nom + ", prenom=" + prenom + ", novoie=" + novoie + ", voie="
+		return "Client [idClient=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", novoie=" + novoie + ", voie="
 				+ voie + ", codepostal=" + codepostal + ", ville=" + ville + ", pays=" + pays + "]";
 	}
 	

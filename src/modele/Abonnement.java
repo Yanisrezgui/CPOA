@@ -3,7 +3,7 @@ package modele;
 import java.time.LocalDate;
 
 public class Abonnement {
-	private int idabonnement;
+	private int idAbonnement;
 	private LocalDate datedeb;
 	private LocalDate datefin;
 	private Client client;
@@ -11,9 +11,9 @@ public class Abonnement {
 	
 	
 	//Contructeur
-	public Abonnement(int idabonnement, LocalDate datedeb, LocalDate datefin, Client client, Revue revue) {
+	public Abonnement(int idAbonnement, LocalDate datedeb, LocalDate datefin, Client client, Revue revue) {
 		super();
-		this.idabonnement = idabonnement;
+		this.idAbonnement = idAbonnement;
 		this.datedeb = datedeb;
 		this.datefin = datefin;
 		this.client = client;
@@ -22,10 +22,10 @@ public class Abonnement {
 
 	//Getters & Setters
 	public int getIdabonnement() {
-		return idabonnement;
+		return idAbonnement;
 	}
-	public void setIdabonnement(int idabonnement) {
-		this.idabonnement = idabonnement;
+	public void setIdabonnement(int idAbonnement) {
+		this.idAbonnement = idAbonnement;
 	}
 	public LocalDate getDatedeb() {
 		return datedeb;
@@ -80,7 +80,7 @@ public class Abonnement {
 	
 	@Override
 	public String toString() {
-		return "Abonnement [idabonnement=" + idabonnement + ", datedeb=" + datedeb + ", datefin=" + datefin
+		return "Abonnement [idAbonnement=" + idAbonnement + ", datedeb=" + datedeb + ", datefin=" + datefin
 				+ ", client=" + client + ", revue=" + revue + "]";
 	}
 	
