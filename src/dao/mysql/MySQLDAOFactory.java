@@ -3,6 +3,7 @@ package dao.mysql;
 import dao.AbonnementDAO;
 import dao.ClientDAO;
 import dao.DAOFactory;
+import dao.PeriodiciteDAO;
 import dao.RevueDAO;
 
 public class MySQLDAOFactory extends DAOFactory {
@@ -18,6 +19,10 @@ public class MySQLDAOFactory extends DAOFactory {
 	@Override
 	public AbonnementDAO getAbonnementDAO() {
 		return MySQLAbonnementDAO.getInstance();
+	}
+	@Override
+	public PeriodiciteDAO getPeriodiciteDAO() {
+		return MySQLPeriodiciteDAO.getInstance();
 	}
 	
 }
