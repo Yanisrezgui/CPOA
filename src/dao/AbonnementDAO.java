@@ -6,5 +6,5 @@ import modele.Abonnement;
 
 public interface AbonnementDAO extends DAO<Abonnement>{
 	
-	public  List<Abonnement> getByDateDeb();
+	public  List<Abonnement> getByDateDeb() throws Exception;
 }

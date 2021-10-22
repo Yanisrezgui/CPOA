@@ -75,15 +75,13 @@ public class MySQLClientDAO implements ClientDAO {
 	}
 
 	@Override
-	public boolean update(Client objet) {
+	public boolean update(Client objet) throws Exception{
 		int nbLignes = 0;
 		
-		try {
+		
 			Connection laConnexion = Connexion.creeConnexion();
 			//TODO changer la requetes update correctement
-			PreparedStatement req = laConnexion.prepareStatement(
-					"update Client set nom=?, prenom=?, no_rue=?, voie=?, code_postal=?, ville=?, pays=?)",
-					Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement req = laConnexion.prepareStatement("update Client set nom=?, prenom=?, no_rue=?, voie=?, code_postal=?, ville=?, pays=? where id_client = ?");
 			req.setString(1, objet.getNom());
 			req.setString(2, objet.getPrenom());
 			req.setInt(3, objet.getNovoie());
@@ -92,49 +90,39 @@ public class MySQLClientDAO implements ClientDAO {
 			req.setString(6, objet.getVille());
 			req.setString(7, objet.getPays());
 			nbLignes = req.executeUpdate();
-		} catch (SQLException sqle) {
-			System.out.println("Pb dans update " + sqle.getMessage());
-		}
+		
 		return nbLignes==1;
 	}
 
 	@Override
-	public boolean delete(Client objet) {
+	public boolean delete(Client objet) throws Exception{
 		int nbLignes = 0;
 		
-		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("delete from Client where id_client=?");
 			req.setInt(1, objet.getIdclient());
 			nbLignes = req.executeUpdate();
-		}catch (SQLException sqle) {
-			System.out.println("Pb dans dele " + sqle.getMessage());
-		}
+		
 		return nbLignes==1;
 	}
 
 
 	@Override
-	public ArrayList<Client> findAll() {
+	public ArrayList<Client> findAll() throws Exception{
 		ArrayList<Client> liste = new ArrayList<Client>();
 		
-		
-		
-		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("select * from Client");
 			ResultSet res = req.executeQuery();
 			while (res.next()){
 				liste.add(new Client(res.getInt("id_client"),res.getString("nom"),res.getString("prenom"),res.getInt("novoie"),res.getString("voie"),res.getString("codepostale"),res.getString("ville"),res.getString("pays")));
 			}
-		}catch (SQLException sqle) {
-			System.out.println("Pb dans select" + sqle.getMessage());		}
 		
 		return liste ;
 	}
 
 	@Override
-	public List<Client> getByVille() {
+	public List<Client> getByVille() throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}

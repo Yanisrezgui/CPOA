@@ -6,6 +6,6 @@ import modele.Periodicite;
 
 public interface PeriodiciteDAO extends DAO<Periodicite> {
 	
-	public List<Periodicite> getByLibelle();
+	public List<Periodicite> getByLibelle() throws Exception;
 
 }

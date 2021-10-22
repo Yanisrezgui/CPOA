@@ -6,5 +6,5 @@ import modele.Client;
 
 public interface ClientDAO extends DAO<Client>{
 	
-	public List<Client> getByVille();
+	public List<Client> getByVille() throws Exception;
 }

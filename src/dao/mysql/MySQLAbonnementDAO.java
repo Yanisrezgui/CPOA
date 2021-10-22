@@ -26,10 +26,9 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 	
 	
 	@Override
-	public Abonnement getById(int id) {
+	public Abonnement getById(int id) throws Exception{
 		Abonnement Abo=null;
 	
-		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("select * from Abonnement where id_abonnement = ?");
 			req.setInt(1, id);
@@ -37,20 +36,14 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 			if(res.next()) {
 				Abo = new Abonnement(res.getInt(1), res.getDate(2).toLocalDate(), res.getDate(3).toLocalDate(), MySQLClientDAO.getInstance().getById(res.getInt(4)), MySQLRevueDAO.getInstance().getById(res.getInt(5)));
 			}
-			
-		}catch (SQLException sqle) {
-			System.out.println("Pb dans select" + sqle.getMessage());
-		}
 		
 		return Abo;
 	}
 	
 	@Override
-	public boolean create(Abonnement objet) {
+	public boolean create(Abonnement objet) throws Exception{
 		int nbLignes = 0;
 		
-		
-		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("insert into Abonnement (date_debut, date_fin, id_client, id_revue) values(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			req.setDate(1, java.sql.Date.valueOf(objet.getDatedeb()));	
@@ -63,50 +56,38 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 				int cle = res.getInt(1);
 				objet.setIdabonnement(cle);
 			}		
-		}catch (SQLException sqle) {
-			System.out.println("Pb dans insert " + sqle.getMessage());
-		}
 		
 		return nbLignes==1;
 	}
 	
 	@Override
-	public boolean update(Abonnement objet) {
+	public boolean update(Abonnement objet) throws Exception{
 		int nbLignes=0;
 		
 		
-		try {
 			Connection laConnexion = Connexion.creeConnexion();
-			PreparedStatement req = laConnexion.prepareStatement("update Periodicite set  date_debut = ?, date_fin = ?)");
-			req.setDate(1, java.sql.Date.valueOf(objet.getDatedeb()));	
+			PreparedStatement req = laConnexion.prepareStatement("update Abonnement set  date_debut = ?, date_fin = ? where id_abonnement = ?");
+			req.setDate(1, java.sql.Date.valueOf(objet.getDatedeb()));
 			req.setDate(2, java.sql.Date.valueOf(objet.getDatefin()));
 			nbLignes = req.executeUpdate();
-		}catch (SQLException sqle) {
-			System.out.println("Pb dans update " + sqle.getMessage());
-		}
 		
 		return nbLignes==1;
 	}
 	
 	@Override
-	public boolean delete(Abonnement objet) {
+	public boolean delete(Abonnement objet) throws Exception{
 		int nbLignes=0;
 		
-		
-		try {
 			Connection laConnexion = Connexion.creeConnexion(); 
 			PreparedStatement req = laConnexion.prepareStatement("delete from Abonnement where id_abonnement = ?");
 			req.setInt(1, objet.getIdabonnement());
 			nbLignes = req.executeUpdate();
-		}catch (SQLException sqle) {
-			System.out.println("Pb dans dele " + sqle.getMessage());
-		}
 		
 		return nbLignes==1;
 	}
 	
 	@Override
-	public ArrayList<Abonnement> findAll() {
+	public ArrayList<Abonnement> findAll() throws Exception{
 		ArrayList<Abonnement> liste = new ArrayList<Abonnement>();
 		
 		
@@ -125,7 +106,7 @@ public class MySQLAbonnementDAO implements AbonnementDAO {
 	}
 	
 	@Override
-	public List<Abonnement> getByDateDeb() {
+	public List<Abonnement> getByDateDeb() throws Exception{
 		// TODO Auto-generated method stub
 		return null;
 	}
