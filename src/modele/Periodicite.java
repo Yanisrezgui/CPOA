@@ -4,23 +4,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Periodicite {
-	private int idperiodicite;
+	private int idPeriodicite;
 	private String libelle;
 	
 	
 	//Contructeur
-	public Periodicite(int idperiodicite, String libelle) {
+	public Periodicite(int idPeriodicite, String libelle) {
 		super();
-		this.idperiodicite = idperiodicite;
+		this.idPeriodicite = idPeriodicite;
 		this.libelle = libelle;
 	}
 
 	//Getters& Setters
 	public int getIdperiodicite() {
-		return idperiodicite;
+		return idPeriodicite;
 	}
-	public void setIdperiodicite(int idperiodicite) {
-		this.idperiodicite = idperiodicite;
+	public void setIdperiodicite(int idPeriodicite) {
+		this.idPeriodicite = idPeriodicite;
 	}
 	public String getLibelle() {
 		return libelle;
@@ -46,7 +46,7 @@ public class Periodicite {
 	
 	@Override
 	public String toString() {
-		return "Periodicite [idperiodicite=" + idperiodicite + ", libelle=" + libelle + "]";
+		return "Periodicite [idPeriodicite=" + idPeriodicite + ", libelle=" + libelle + "]";
 	}
 	
 	
