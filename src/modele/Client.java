@@ -7,7 +7,7 @@ public class Client {
 	private int idClient;
 	private String nom;
 	private String prenom;
-	private int novoie;
+	private int novoie;	
 	private String voie;
 	private String codepostal;
 	private String ville;
