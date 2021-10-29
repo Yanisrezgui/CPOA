@@ -121,7 +121,21 @@ public class Client {
 		return codepostal;
 	}
 	public void setCodepostal(String codepostal) {
-		this.codepostal = codepostal;
+		Pattern pattern = Pattern.compile("[0-9]+$");
+		Matcher matcherCodePostal = pattern.matcher(this.getCodepostal());
+		
+		if(this.getCodepostal()==null) {
+			throw new IllegalArgumentException("Le code postal ne peut etre null");
+		}
+		else if("".equals(this.getCodepostal())) {
+			throw new IllegalArgumentException("Code postal non valide");
+		}
+		else if(!matcherCodePostal.find()) {
+			throw new IllegalArgumentException("Code postal non valide");
+		}
+		else {
+			this.codepostal = codepostal;
+		}
 	}
 	public String getVille() {
 		return ville;
