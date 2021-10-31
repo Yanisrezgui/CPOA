@@ -121,7 +121,7 @@ public class Client {
 		return codepostal;
 	}
 	public void setCodepostal(String codepostal) {
-		Pattern pattern = Pattern.compile("[0-9]+$");
+		Pattern pattern = Pattern.compile("^[0-9]+$");
 		Matcher matcherCodePostal = pattern.matcher(this.getCodepostal());
 		
 		if(this.getCodepostal()==null) {
