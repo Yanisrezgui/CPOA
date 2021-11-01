@@ -14,6 +14,7 @@ public class ControleurCreerRevue {
 	private TextField txtTitre;
 	private TextArea txtDescription;
 	private TextField txtTarif;
+	// Choice box + Overide + Initialize
 	private ComboBox<Periodicite> cboxPeriodicite;
 	
 	
