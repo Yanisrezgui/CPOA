@@ -81,7 +81,7 @@ public class ControleurCreerClient {
 				dao.getClientDAO().create(client);
 			}
 		}catch(Exception sqle) {
-			
+			System.out.println(sqle.getMessage());
 		}
 	}
 
