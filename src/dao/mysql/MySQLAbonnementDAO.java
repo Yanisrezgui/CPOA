@@ -10,7 +10,6 @@ import java.util.List;
 
 import dao.AbonnementDAO;
 import modele.Abonnement;
-import td1.Connexion;
 
 public class MySQLAbonnementDAO implements AbonnementDAO {
 	private static MySQLAbonnementDAO instance;

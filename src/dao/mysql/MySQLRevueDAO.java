@@ -10,7 +10,6 @@ import java.util.List;
 
 import dao.RevueDAO;
 import modele.Revue;
-import td1.Connexion;
 
 public class MySQLRevueDAO implements RevueDAO{
 	private static MySQLRevueDAO instance;

@@ -9,7 +9,6 @@ import java.util.List;
 
 import dao.PeriodiciteDAO;
 import modele.Periodicite;
-import td1.Connexion;
 
 public class MySQLPeriodiciteDAO implements PeriodiciteDAO{
 	private static MySQLPeriodiciteDAO instance;
