@@ -6,12 +6,14 @@ import java.util.regex.Pattern;
 import dao.DAOFactory;
 import dao.Persistance;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import modele.Periodicite;
 
 public class ControleurCreerPeriodicite {
 	@FXML
 	private TextField txtLibelle;
+	private Label lblAffichage;
 	
 	public void ajouterPeriodicite() {
 		String libelle = this.txtLibelle.getText();
@@ -31,6 +33,7 @@ public class ControleurCreerPeriodicite {
 			else {
 				Periodicite periodicite = new Periodicite(libelle);
 				dao.getPeriodiciteDAO().create(periodicite);
+				this.lblAffichage.setText(periodicite.toString());
 			}
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());

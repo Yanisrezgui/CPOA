@@ -6,6 +6,7 @@ import dao.DAOFactory;
 import dao.Persistance;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import modele.Abonnement;
 import modele.Client;
 import modele.Revue;
@@ -15,6 +16,7 @@ public class ControleurCreerAbonnement {
 	private DatePicker datepicFin;
 	private ChoiceBox<Client> cbxClient;
 	private ChoiceBox<Revue> cbxRevue;
+	private Label lblAffichage;
 	
 	public void ajouterAbonnement() {
 		LocalDate datedeb = this.datepicDeb.getValue();
@@ -46,6 +48,7 @@ public class ControleurCreerAbonnement {
 			else {
 				Abonnement abonnement = new Abonnement(datedeb, datefin, client, revue);
 				dao.getAbonnementDAO().create(abonnement);
+				this.lblAffichage.setText(abonnement.toString());
 			}
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());

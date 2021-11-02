@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import dao.DAOFactory;
 import dao.Persistance;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import modele.Client;
 
@@ -18,6 +19,7 @@ public class ControleurCreerClient {
 	private TextField txtVille;
 	private TextField txtPays;
 	private TextField txtCodePostal;
+	private Label lblAffichage;
 	
 	public void ajouterClient(){
 		String nom = this.txtNom.getText();
@@ -79,6 +81,7 @@ public class ControleurCreerClient {
 			else {
 				Client client = new Client(nom, prenom, novoie, voie, codePostal, ville, pays);
 				dao.getClientDAO().create(client);
+				this.lblAffichage.setText(client.toString());
 			}
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());

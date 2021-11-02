@@ -4,6 +4,7 @@ import dao.DAOFactory;
 import dao.Persistance;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import modele.Periodicite;
@@ -16,6 +17,7 @@ public class ControleurCreerRevue {
 	private TextField txtTarif;
 	// Choice box + Overide + Initialize
 	private ComboBox<Periodicite> cboxPeriodicite;
+	private Label lblAffichage;
 	
 	
 	
@@ -46,7 +48,8 @@ public class ControleurCreerRevue {
 			}
 			else {
 				Revue revue = new Revue(titre, description, Integer.parseInt(tarif), null, periodicite);
-				dao.getRevueDAO().create(revue);							
+				dao.getRevueDAO().create(revue);	
+				this.lblAffichage.setText(revue.toString());
 			}
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
