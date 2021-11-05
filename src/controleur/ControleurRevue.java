@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import modele.Periodicite;
 import modele.Revue;
 
-public class ControleurCreerRevue {
+public class ControleurRevue {
 	@FXML
 	private TextField txtTitre;
 	private TextArea txtDescription;

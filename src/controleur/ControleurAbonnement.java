@@ -11,7 +11,7 @@ import modele.Abonnement;
 import modele.Client;
 import modele.Revue;
 
-public class ControleurCreerAbonnement {
+public class ControleurAbonnement {
 	private DatePicker datepicDeb;
 	private DatePicker datepicFin;
 	private ChoiceBox<Client> cbxClient;

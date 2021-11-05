@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import modele.Periodicite;
 
-public class ControleurCreerPeriodicite {
+public class ControleurPeriodicite {
 	@FXML
 	private TextField txtLibelle;
 	private Label lblAffichage;
