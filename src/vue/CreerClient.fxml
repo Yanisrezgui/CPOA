@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControleurCreerClient">
    <children>
       <GridPane prefHeight="259.0" prefWidth="584.0" style="-fx-border-width: 4; -fx-border-style: solid;">
@@ -37,7 +36,7 @@
             <Label text="Pays : " GridPane.rowIndex="6" />
             <TextField fx:id="txtNom" prefHeight="26.0" prefWidth="114.0" GridPane.columnIndex="1" />
             <TextField fx:id="txtPrenom" prefHeight="26.0" prefWidth="115.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtNoVoie" prefHeight="26.0" prefWidth="26.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtNoVoie" prefHeight="26.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txtVoie" prefHeight="26.0" prefWidth="268.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txtVille" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txtPays" prefHeight="26.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
