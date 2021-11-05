@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import modele.Client;
 
-public class ControleurCreerClient {
+public class ControleurClient {
 	@FXML
 	private TextField txtNom;
 	private TextField txtPrenom;
