@@ -1,5 +1,7 @@
 package controleur;
 
+import java.io.File;
+
 import dao.DAOFactory;
 import dao.Persistance;
 import javafx.fxml.FXML;
@@ -7,6 +9,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import modele.Periodicite;
 import modele.Revue;
 
@@ -18,6 +22,8 @@ public class ControleurRevue {
 	// Choice box + Overide + Initialize
 	private ComboBox<Periodicite> cboxPeriodicite;
 	private Label lblAffichage;
+	private Stage vue;
+	private String nomfichier="";
 	
 	
 	
@@ -54,6 +60,25 @@ public class ControleurRevue {
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
+	}
+	
+	public void setVue(Stage vue) {
+		this.vue=vue;
+	}
+	
+	public void ajouterVisuel() {
+		FileChooser fileChooser=new FileChooser();
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("JPG",".jpg"),
+				new FileChooser.ExtensionFilter("PNG", ".png"));
+		fileChooser.setTitle("open Resource File");
+		File f=fileChooser.showOpenDialog(this.vue);
+		if(f!=null)
+		{
+			nomfichier=f.getAbsolutePath();
+		}
+				
+				
 	}
 	
 	//TODO Voir où mettre ca 
