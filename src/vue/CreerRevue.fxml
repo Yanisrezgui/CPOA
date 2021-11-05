@@ -12,8 +12,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurRevue">
 
    <children>
@@ -39,6 +37,7 @@
             <TextField fx:id="txtTitre" GridPane.columnIndex="1" />
             <TextField fx:id="txtTarif" maxWidth="-Infinity" prefHeight="26.0" prefWidth="54.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextArea fx:id="txtDescription" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btn_visuel" mnemonicParsing="false" text="Visuel" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

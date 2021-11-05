@@ -25,7 +25,7 @@ public class ControleurRevue {
 		String titre = this.txtTitre.getText();
 		String description = this.txtDescription.getText();
 		String tarif = this.txtTarif.getText();
-		String visuel;
+		String visuel = null;
 		Periodicite periodicite = this.cboxPeriodicite.getSelectionModel().getSelectedItem();
 		
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
