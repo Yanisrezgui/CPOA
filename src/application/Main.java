@@ -24,7 +24,7 @@ public class Main extends Application {
 			Node root = fxmlLoader.load();
 			Scene scene = new Scene((VBox) root, 600, 400);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Ma premi�re fen�tre JavaFX");
+			primaryStage.setTitle("Projet Java");
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
