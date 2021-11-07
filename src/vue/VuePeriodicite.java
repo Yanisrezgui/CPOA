@@ -2,21 +2,20 @@ package vue;
 
 import java.net.URL;
 
-import controleur.ControleurClient;
+import controleur.ControleurPeriodicite;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class VueClient extends Stage{
-	private ControleurClient controleur;
-	
-	
-	public VueClient() { 
+public class VuePeriodicite extends Stage {
+	private ControleurPeriodicite controleur;
+
+	public VuePeriodicite() { 
 		try {
 			this.initModality(Modality.APPLICATION_MODAL);
-			final URL fxmlURL= getClass().getResource("/vue/CreerClient.fxml");
+			final URL fxmlURL= getClass().getResource("/vue/CreerPeriodicite.fxml");
 			final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL); 
 			final VBox node = (VBox)fxmlLoader.load();
 			Scene scene = new Scene(node);
@@ -29,12 +28,12 @@ public class VueClient extends Stage{
 			e.printStackTrace();
 		}
 	}
-
 	
-	public ControleurClient getControleur() {
-		return this.controleur;
+	
+	public ControleurPeriodicite getControleur() {
+		return controleur;
 	}
-	public void setControleur(ControleurClient controleur) {
+	public void setControleur(ControleurPeriodicite controleur) {
 		this.controleur = controleur;
 	}
 }

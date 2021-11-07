@@ -2,21 +2,20 @@ package vue;
 
 import java.net.URL;
 
-import controleur.ControleurClient;
+import controleur.ControleurAbonnement;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class VueClient extends Stage{
-	private ControleurClient controleur;
-	
-	
-	public VueClient() { 
+public class VueAbonnement extends Stage {
+	private ControleurAbonnement controleur;
+
+	public VueAbonnement() { 
 		try {
 			this.initModality(Modality.APPLICATION_MODAL);
-			final URL fxmlURL= getClass().getResource("/vue/CreerClient.fxml");
+			final URL fxmlURL= getClass().getResource("/vue/CreerAbonnement.fxml");
 			final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL); 
 			final VBox node = (VBox)fxmlLoader.load();
 			Scene scene = new Scene(node);
@@ -29,12 +28,13 @@ public class VueClient extends Stage{
 			e.printStackTrace();
 		}
 	}
-
 	
-	public ControleurClient getControleur() {
-		return this.controleur;
+
+	public ControleurAbonnement getControleur() {
+		return controleur;
 	}
-	public void setControleur(ControleurClient controleur) {
+	public void setControleur(ControleurAbonnement controleur) {
 		this.controleur = controleur;
 	}
+	
 }

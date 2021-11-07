@@ -2,27 +2,27 @@ package vue;
 
 import java.net.URL;
 
-import controleur.ControleurClient;
+import controleur.ControleurRevue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class VueClient extends Stage{
-	private ControleurClient controleur;
+public class VueRevue extends Stage{
+	private ControleurRevue controleur;
+
 	
-	
-	public VueClient() { 
+	public VueRevue() { 
 		try {
 			this.initModality(Modality.APPLICATION_MODAL);
-			final URL fxmlURL= getClass().getResource("/vue/CreerClient.fxml");
+			final URL fxmlURL= getClass().getResource("/vue/CreerRevue.fxml");
 			final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL); 
 			final VBox node = (VBox)fxmlLoader.load();
 			Scene scene = new Scene(node);
 			controleur = fxmlLoader.getController();
 			setScene(scene);
-			setTitle("Gestion Client");
+			setTitle("Gestion Revue");
 			controleur.setVue(this);
 			this.show();
 		}catch(Exception e ) {
@@ -31,10 +31,10 @@ public class VueClient extends Stage{
 	}
 
 	
-	public ControleurClient getControleur() {
+	public ControleurRevue getControleur() {
 		return this.controleur;
 	}
-	public void setControleur(ControleurClient controleur) {
+	public void setControleur(ControleurRevue controleur) {
 		this.controleur = controleur;
 	}
 }
