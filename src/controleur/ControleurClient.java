@@ -20,6 +20,7 @@ public class ControleurClient {
 	private TextField txtPays;
 	private TextField txtCodePostal;
 	private Label lblAffichage;
+	private Object vue;
 	
 	public void ajouterClient(){
 		String nom = this.txtNom.getText();
@@ -87,5 +88,14 @@ public class ControleurClient {
 			System.out.println(sqle.getMessage());
 		}
 	}
+
+	
+	public Object getVue() {
+		return vue;
+	}
+	public void setVue(Object vue) {
+		this.vue = vue;
+	}
+	
 
 }
