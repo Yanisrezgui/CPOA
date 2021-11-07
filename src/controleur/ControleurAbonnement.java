@@ -7,6 +7,7 @@ import dao.Persistance;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import modele.Abonnement;
 import modele.Client;
 import modele.Revue;
@@ -17,6 +18,7 @@ public class ControleurAbonnement {
 	private ChoiceBox<Client> cbxClient;
 	private ChoiceBox<Revue> cbxRevue;
 	private Label lblAffichage;
+	private Stage vue;
 	
 	public void ajouterAbonnement() {
 		LocalDate datedeb = this.datepicDeb.getValue();
@@ -54,6 +56,16 @@ public class ControleurAbonnement {
 			System.out.println(sqle.getMessage());
 		}
 	}
+
 	
 	//Overide et Initilize
+	
+	
+	public Stage getVue() {
+		return vue;
+	}
+	public void setVue(Stage vue) {
+		this.vue = vue;
+	}
+	
 }

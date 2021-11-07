@@ -62,9 +62,6 @@ public class ControleurRevue {
 		}
 	}
 	
-	public void setVue(Stage vue) {
-		this.vue=vue;
-	}
 	
 	public void ajouterVisuel() {
 		FileChooser fileChooser=new FileChooser();
@@ -81,6 +78,7 @@ public class ControleurRevue {
 				
 	}
 	
+	
 	//TODO Voir où mettre ca 
 //	public void supprimerRevue(Revue revue) {
 //		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
@@ -92,5 +90,12 @@ public class ControleurRevue {
 //		}
 //	}
 	
+	
+	public void setVue(Stage vue) {
+		this.vue=vue;
+	}
+	public Stage getVue() {
+		return vue;
+	}
 	
 }

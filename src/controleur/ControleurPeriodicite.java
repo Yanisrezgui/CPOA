@@ -8,12 +8,14 @@ import dao.Persistance;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import modele.Periodicite;
 
 public class ControleurPeriodicite {
 	@FXML
 	private TextField txtLibelle;
 	private Label lblAffichage;
+	private Stage vue;
 	
 	public void ajouterPeriodicite() {
 		String libelle = this.txtLibelle.getText();
@@ -38,6 +40,14 @@ public class ControleurPeriodicite {
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
-		
 	}
+
+	
+	public Stage getVue() {
+		return vue;
+	}
+	public void setVue(Stage vue) {
+		this.vue = vue;
+	}
+	
 }

@@ -8,6 +8,7 @@ import dao.Persistance;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import modele.Client;
 
 public class ControleurClient {
@@ -20,7 +21,7 @@ public class ControleurClient {
 	private TextField txtPays;
 	private TextField txtCodePostal;
 	private Label lblAffichage;
-	private Object vue;
+	private Stage vue;
 	
 	public void ajouterClient(){
 		String nom = this.txtNom.getText();
@@ -90,12 +91,11 @@ public class ControleurClient {
 	}
 
 	
-	public Object getVue() {
+	public Stage getVue() {
 		return vue;
 	}
-	public void setVue(Object vue) {
+	public void setVue(Stage vue) {
 		this.vue = vue;
 	}
 	
-
 }
