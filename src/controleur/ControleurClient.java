@@ -104,8 +104,7 @@ public class ControleurClient {
 				System.out.println("erreur code postale invalide");
 				afficheAlerte("code postale invalide");
 			}
-			else 
-			System.out.println(nom+" "+prenom+" "+ novoie+" "+ voie+" "+ codePostal+" "+ ville+" "+ pays);{ 
+			else { 
 				try {
 				Client client = new Client(nom, prenom, novoie, voie, codePostal, ville, pays);
 				dao.getClientDAO().create(client);
