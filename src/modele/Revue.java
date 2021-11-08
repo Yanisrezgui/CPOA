@@ -42,10 +42,10 @@ public class Revue {
 	}
 	public void setTitre(String titre) {
 		
-		if(this.getTitre()=="") {
+		if(titre=="") {
 			throw new IllegalArgumentException("Titre ne peut etre null");
 		}
-		else if("".equals(this.getTitre())) {
+		else if("".equals(titre)) {
 			throw new IllegalArgumentException("Titre non valide");
 		}
 		else {
@@ -57,10 +57,10 @@ public class Revue {
 	}
 	public void setDescription(String description) {
 		
-		if(this.getDescription()=="") {
+		if(description=="") {
 			throw new IllegalArgumentException("Description ne peut etre null");
 		}
-		else if("".equals(this.getDescription())) {
+		else if("".equals(description)) {
 			throw new IllegalArgumentException("Description non valide");
 		}
 		else {
@@ -91,10 +91,10 @@ public class Revue {
 
 	public void setVisuel(String visuel) {
 		
-		if(this.getVisuel()=="") {
+		if(visuel=="") {
 			throw new IllegalArgumentException("Visuel ne peut etre null");
 		}
-		else if("".equals(this.getVisuel())) {
+		else if("".equals(visuel)) {
 			throw new IllegalArgumentException("Visuel non valide");
 		}
 		else {
@@ -106,7 +106,7 @@ public class Revue {
 	}
 	public void setPeriodicite(Periodicite periodicite) {
 		
-		if(this.getPeriodicite()==null) {
+		if(periodicite==null) {
 			throw new IllegalArgumentException("Periodicite ne peut etre null");
 		}
 		else {

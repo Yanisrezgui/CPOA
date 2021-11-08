@@ -57,12 +57,12 @@ public class Client {
 	
 	public void setNom(String nom) {
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
-		Matcher matcherNom = pattern.matcher(this.getNom());
+		Matcher matcherNom = pattern.matcher(nom);
 		
-		if(this.getNom()==null) {
+		if(nom==null) {
 			throw new IllegalArgumentException("Nom ne peut etre null");
 		}
-		else if("".equals(this.getNom())) {
+		else if("".equals(nom)) {
 			throw new IllegalArgumentException("Nom non valide");
 		}
 		else if(!matcherNom.find()) {
@@ -78,12 +78,12 @@ public class Client {
 	}
 	public void setPrenom(String prenom) {
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
-		Matcher matcherPrenom = pattern.matcher(this.getPrenom());
+		Matcher matcherPrenom = pattern.matcher(prenom);
 		
-		if(this.getPrenom()==null) {
+		if(prenom==null) {
 			throw new IllegalArgumentException("Prenom ne peut etre null");
 		}
-		else if("".equals(this.getNom())) {
+		else if("".equals(prenom)) {
 			throw new IllegalArgumentException("Prenom non valide");
 		}
 		else if(!matcherPrenom.find()) {
@@ -107,10 +107,10 @@ public class Client {
 	}
 	public void setVoie(String voie) {
 		
-			if(this.getVoie()==null) {
+			if(voie==null) {
 				throw new IllegalArgumentException("Voie ne peut etre null");
 			}
-			else if("".equals(this.getVoie())) {
+			else if("".equals(voie)) {
 				throw new IllegalArgumentException("Voie non valide");
 			}
 			else {
@@ -122,12 +122,12 @@ public class Client {
 	}
 	public void setCodepostal(String codepostal) {
 		Pattern pattern = Pattern.compile("^[0-9]+$");
-		Matcher matcherCodePostal = pattern.matcher(this.getCodepostal());
+		Matcher matcherCodePostal = pattern.matcher(codepostal);
 		
-		if(this.getCodepostal()==null) {
+		if(codepostal==null) {
 			throw new IllegalArgumentException("Le code postal ne peut etre null");
 		}
-		else if("".equals(this.getCodepostal())) {
+		else if("".equals(codepostal)) {
 			throw new IllegalArgumentException("Code postal non valide");
 		}
 		else if(!matcherCodePostal.find()) {
@@ -142,12 +142,12 @@ public class Client {
 	}
 	public void setVille(String ville) {
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
-		Matcher matcherVille = pattern.matcher(this.getVille());
+		Matcher matcherVille = pattern.matcher(ville);
 		
-		if(this.getVille()==null) {
+		if(ville==null) {
 			throw new IllegalArgumentException("Ville ne peut etre null");
 		}
-		else if("".equals(this.getVille())) {
+		else if("".equals(ville)) {
 			throw new IllegalArgumentException("Ville non valide");
 		}
 		else if(!matcherVille.find()) {
@@ -162,12 +162,12 @@ public class Client {
 	}
 	public void setPays(String pays) {
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
-		Matcher matcherPays = pattern.matcher(this.getPays());
+		Matcher matcherPays = pattern.matcher(pays);
 		
-		if(this.getPays()==null) {
+		if(pays==null) {
 			throw new IllegalArgumentException("Pays ne peut etre null");
 		}
-		else if("".equals(this.getVille())) {
+		else if("".equals(pays)) {
 			throw new IllegalArgumentException("Pays non valide");
 		}
 		else if(!matcherPays.find()) {

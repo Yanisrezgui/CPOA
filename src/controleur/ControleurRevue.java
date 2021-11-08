@@ -52,12 +52,12 @@ public class ControleurRevue {
 			else if(tarif == null || "".equals(tarif) || Integer.parseInt(tarif) <= 0){
 				throw new IllegalArgumentException("Veuillez saisir un prix");
 			}
-			/*else if(visuel == null) {
+			else if(visuel == null) {
 				throw new IllegalAccessException("Veuillez donner un visuel");
 			}
 			else if(periodicite == null ) {
 				throw new IllegalArgumentException("Veuillez selectionner une périodicité");
-			}*/
+			}
 			else {
 				Revue revue = new Revue(titre, description, Integer.parseInt(tarif), null, periodicite);
 				dao.getRevueDAO().create(revue);	

@@ -49,12 +49,12 @@ public class Periodicite {
 	}
 	public void setLibelle(String libelle) {
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
-		Matcher matcherLibelle = pattern.matcher(this.getLibelle());
+		Matcher matcherLibelle = pattern.matcher(libelle);
 		
-		if(this.getLibelle()==null) {
+		if(libelle==null) {
 			throw new IllegalArgumentException("Libelle ne peut etre null");
 		}
-		else if("".equals(this.getLibelle())) {
+		else if("".equals(libelle)) {
 			throw new IllegalArgumentException("Libelle non valide");
 		}
 		else if(!matcherLibelle.find()) {
