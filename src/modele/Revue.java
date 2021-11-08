@@ -38,11 +38,11 @@ public class Revue {
 		this.idRevue = idrevue;
 	}
 	public String getTitre() {
-		return titre;
+		return this.titre;
 	}
 	public void setTitre(String titre) {
 		
-		if(this.getTitre()==null) {
+		if(this.getTitre()=="") {
 			throw new IllegalArgumentException("Titre ne peut etre null");
 		}
 		else if("".equals(this.getTitre())) {
@@ -57,7 +57,7 @@ public class Revue {
 	}
 	public void setDescription(String description) {
 		
-		if(this.getDescription()==null) {
+		if(this.getDescription()=="") {
 			throw new IllegalArgumentException("Description ne peut etre null");
 		}
 		else if("".equals(this.getDescription())) {
@@ -91,7 +91,7 @@ public class Revue {
 
 	public void setVisuel(String visuel) {
 		
-		if(this.getVisuel()==null) {
+		if(this.getVisuel()=="") {
 			throw new IllegalArgumentException("Visuel ne peut etre null");
 		}
 		else if("".equals(this.getVisuel())) {

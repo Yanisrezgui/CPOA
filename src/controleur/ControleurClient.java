@@ -54,53 +54,72 @@ public class ControleurClient {
 		Pattern pattern2 = Pattern.compile("^[0-9]+$");
 		Matcher matcherCodePostal = pattern2.matcher(codePostal);
 		
-		try {
+		
 			if(nom == null || "".equals(nom)) {
-				throw new IllegalArgumentException("Veuillez saisir un nom");
+				System.out.println("erreur nom saisi nom");
+				afficheAlerte("Veuillez saisir un nom");
+				
 			}
 			else if(!matcherNom.find()) {
-				throw new IllegalAccessException("Nom invalide");
+				System.out.println("erreur nom invalide");
+				afficheAlerte("Nom invalide");
 			}
 			else if( prenom == null || "".equals(prenom)) {
-				throw new IllegalArgumentException("Veuillez saisir un prenom");
+				System.out.println("erreur prenom");
+				afficheAlerte("Veuillez saisir un prenom");
 			}
 			else if(!matcherPrenom.find()) {
-				throw new IllegalAccessException("Prenom invalide");
+				System.out.println("erreur prenom invalide");
+				afficheAlerte("Prenom invalide");
 			}
 			else if(novoie < 1) {
-				throw new IllegalAccessException("N° de voie ne peut être inférieur à 1");
+				System.out.println("erreur no voie inferieure");
+				afficheAlerte("N° de voie ne peut être inférieur à 1");
 			}
 			else if(voie == null || "".equals(voie)) {
-				throw new IllegalArgumentException("Veuillez saisir une voie");
+				System.out.println("erreur saisie voie");
+				afficheAlerte("Veuillez saisir une voie");
 			}
 			if(ville== null || "".equals(ville)) {
-				throw new IllegalArgumentException("Veuillez saisir une ville");
+				System.out.println("erreur saisie ville");
+				afficheAlerte("Veuillez saisir une ville");
 			}
 			else if(!matcherVille.find()) {
-				throw new IllegalAccessException("Ville invalide");
+				System.out.println("erreur ville invalide");
+				afficheAlerte("Ville invalide");
 			}
 			if(pays == null || "".equals(pays)) {
-				throw new IllegalArgumentException("Veuillez saisir un pays");
+				System.out.println("erreur saisie pays");
+				afficheAlerte("Veuillez saisir un pays");
 			}
 			else if(!matcherPays.find()) {
-				throw new IllegalAccessException("Pays invalide");
+				System.out.println("erreur pays invalide");
+				afficheAlerte("Pays invalide");
 			}
 			if(codePostal == null || "".equals(codePostal)) {
-				throw new IllegalArgumentException("Veuillez saisir un code postal");
+				System.out.println("erreur saisie code postale");
+				afficheAlerte("Veuillez saisir un code postal");
 			}
 			else if(!matcherCodePostal.find()) {
-				throw new IllegalAccessException("Pays invalide");
+				System.out.println("erreur code postale invalide");
+				afficheAlerte("code postale invalide");
 			}
-			else {
+			else 
+			System.out.println(nom+" "+prenom+" "+ novoie+" "+ voie+" "+ codePostal+" "+ ville+" "+ pays);{ 
+				try {
 				Client client = new Client(nom, prenom, novoie, voie, codePostal, ville, pays);
 				dao.getClientDAO().create(client);
-				this.lblAffichage.setText(client.toString());
+				}catch(Exception sqle) {
+					System.out.println("erreur controleur client "+sqle.getMessage());
+				}
 			}
-		}catch(Exception sqle) {
-			System.out.println(sqle.getMessage());
-		}
+		
 	}
 
+	public void afficheAlerte(String message) {
+		System.out.println("alerte"+message);
+		
+	}
 	
 	public Stage getVue() {
 		return vue;
