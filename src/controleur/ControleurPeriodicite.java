@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 import dao.DAOFactory;
 import dao.Persistance;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modele.Periodicite;
@@ -15,7 +14,6 @@ public class ControleurPeriodicite {
 	@FXML
 	private TextField txtLibelle;
 	@FXML
-	private Label lblAffichage;
 	private Stage vue;
 	
 	public void ajouterPeriodicite() {
@@ -39,6 +37,16 @@ public class ControleurPeriodicite {
 				
 			}
 		}catch(Exception sqle) {
+			System.out.println(sqle.getMessage());
+		}
+	}
+	
+	public void supprimerPeriodicité(Periodicite periodicite) {
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+	
+		try {
+			dao.getPeriodiciteDAO().delete(periodicite);
+		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
 	}

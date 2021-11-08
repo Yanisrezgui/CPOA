@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -27,8 +26,6 @@ public class ControleurRevue implements Initializable {
 	private TextField txtTarif;
 	@FXML
 	private ComboBox<Periodicite> cboxPeriodicite;
-	@FXML
-	private Label lblAffichage;
 	@FXML
 	private Stage vue;
 	@FXML
@@ -86,17 +83,16 @@ public class ControleurRevue implements Initializable {
 				
 	}
 	
+	 
+	public void supprimerRevue(Revue revue) {
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 	
-	//TODO Voir où mettre ca 
-//	public void supprimerRevue(Revue revue) {
-//		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
-//		
-//		try {
-//			dao.getRevueDAO().delete(revue);
-//		} catch(Exception sqle) {
-//			System.out.println(sqle.getMessage());
-//		}
-//	}
+		try {
+			dao.getRevueDAO().delete(revue);
+		} catch(Exception sqle) {
+			System.out.println(sqle.getMessage());
+		}
+	}
 	
 	@Override
     public void initialize(URL location, ResourceBundle resources) {

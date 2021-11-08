@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import modele.Abonnement;
 import modele.Client;
@@ -27,8 +26,6 @@ public class ControleurAbonnement implements Initializable {
 	private ChoiceBox<Client> cbxClient;
 	@FXML
 	private ChoiceBox<Revue> cbxRevue;
-	@FXML
-	private Label lblAffichage;
 	@FXML
 	private Stage vue;
 	
@@ -62,13 +59,22 @@ public class ControleurAbonnement implements Initializable {
 			else {
 				Abonnement abonnement = new Abonnement(datedeb, datefin, client, revue);
 				dao.getAbonnementDAO().create(abonnement);
-				this.lblAffichage.setText(abonnement.toString());
 			}
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
 	}
 
+	public void supprimerAbonnement(Abonnement abonnement) {
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+	
+		try {
+			dao.getAbonnementDAO().delete(abonnement);
+		} catch(Exception sqle) {
+			System.out.println(sqle.getMessage());
+		}
+	}
+	
 	
 	@Override
     public void initialize(URL location, ResourceBundle resources) {

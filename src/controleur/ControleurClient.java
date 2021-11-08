@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 import dao.DAOFactory;
 import dao.Persistance;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,8 +28,6 @@ public class ControleurClient {
 	private TextField txtCodePostal;
 	@FXML
 	private TableView<Client> tblClient;
-	@FXML
-	private Label lblAffichage;
 	@FXML
 	private Stage vue;
 	
@@ -114,10 +111,20 @@ public class ControleurClient {
 			}
 		
 	}
-
+	
+	public void supprimerClient(Client client) {
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+	
+		try {
+			dao.getClientDAO().delete(client);
+		} catch(Exception sqle) {
+			System.out.println(sqle.getMessage());
+		}
+	}
+	
+	
 	public void afficheAlerte(String message) {
 		System.out.println("alerte"+message);
-		
 	}
 	
 	public Stage getVue() {

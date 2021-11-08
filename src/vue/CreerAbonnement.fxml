@@ -69,7 +69,7 @@
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="102.0" prefWidth="770.0">
          <children>
-            <Button fx:id="btnSupprimer" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Supprimer" />
+            <Button fx:id="btnSupprimer" mnemonicParsing="false" onAction="#supprimerAbonnement" prefHeight="25.0" prefWidth="90.0" text="Supprimer" />
             <Button fx:id="btnModifier" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Modifier" />
          </children>
       </FlowPane>
