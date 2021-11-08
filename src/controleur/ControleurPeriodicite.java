@@ -14,6 +14,7 @@ import modele.Periodicite;
 public class ControleurPeriodicite {
 	@FXML
 	private TextField txtLibelle;
+	@FXML
 	private Label lblAffichage;
 	private Stage vue;
 	

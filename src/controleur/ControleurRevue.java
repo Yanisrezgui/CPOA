@@ -17,12 +17,18 @@ import modele.Revue;
 public class ControleurRevue {
 	@FXML
 	private TextField txtTitre;
+	@FXML
 	private TextArea txtDescription;
+	@FXML
 	private TextField txtTarif;
 	// Choice box + Overide + Initialize
+	@FXML
 	private ComboBox<Periodicite> cboxPeriodicite;
+	@FXML
 	private Label lblAffichage;
+	@FXML
 	private Stage vue;
+	@FXML
 	private String nomfichier="";
 	
 	

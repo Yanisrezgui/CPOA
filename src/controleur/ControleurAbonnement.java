@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import dao.DAOFactory;
 import dao.Persistance;
+import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -13,11 +14,18 @@ import modele.Client;
 import modele.Revue;
 
 public class ControleurAbonnement {
+	
+	@FXML
 	private DatePicker datepicDeb;
+	@FXML
 	private DatePicker datepicFin;
+	@FXML
 	private ChoiceBox<Client> cbxClient;
+	@FXML
 	private ChoiceBox<Revue> cbxRevue;
+	@FXML
 	private Label lblAffichage;
+	@FXML
 	private Stage vue;
 	
 	public void ajouterAbonnement() {

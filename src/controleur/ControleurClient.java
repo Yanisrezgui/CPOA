@@ -15,14 +15,23 @@ import modele.Client;
 public class ControleurClient {
 	@FXML
 	private TextField txtNom;
+	@FXML
 	private TextField txtPrenom;
+	@FXML
 	private TextField txtNoVoie;
+	@FXML
 	private TextField txtVoie;
+	@FXML
 	private TextField txtVille;
+	@FXML
 	private TextField txtPays;
+	@FXML
 	private TextField txtCodePostal;
+	@FXML
 	private TableView<Client> tblClient;
+	@FXML
 	private Label lblAffichage;
+	@FXML
 	private Stage vue;
 	
 	public void ajouterClient(){
