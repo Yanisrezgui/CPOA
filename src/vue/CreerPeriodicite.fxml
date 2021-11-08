@@ -3,14 +3,16 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>  
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurPeriodicite">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurPeriodicite">
    <children>
       <GridPane fx:id="saisie" prefHeight="235.0" prefWidth="600.0" style="-fx-border-style: solid; -fx-border-width: 4;">
         <columnConstraints>
@@ -31,14 +33,31 @@
             <TextField fx:id="txtLibelle" prefHeight="26.0" prefWidth="218.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <FlowPane alignment="CENTER" prefHeight="109.0" prefWidth="600.0">
+      <FlowPane alignment="CENTER" prefHeight="70.0" prefWidth="735.0">
          <children>
             <Button fx:id="btnCreer" mnemonicParsing="false" onAction="#ajouterPeriodicite" prefHeight="26.0" prefWidth="86.0" text="Créer" />
          </children>
       </FlowPane>
-      <FlowPane alignment="CENTER" prefHeight="94.0" prefWidth="600.0">
+      <FlowPane alignment="CENTER" prefHeight="159.0" prefWidth="735.0">
          <children>
-            <Label fx:id="lblAffichage" prefHeight="17.0" prefWidth="37.0" text="Label" />
+            <TableView fx:id="tblPeriodicite" prefHeight="198.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-width: 4;">
+              <columns>
+                <TableColumn prefWidth="99.0" text="Id " />
+                <TableColumn prefWidth="100.0" text="Libellé" />
+              </columns>
+               <FlowPane.margin>
+                  <Insets bottom="5.0" />
+               </FlowPane.margin>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TableView>
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="107.0" prefWidth="735.0">
+         <children>
+            <Button fx:id="btnSupprimer" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Supprimer" />
+            <Button fx:id="btnModifier" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Modifier" />
          </children>
       </FlowPane>
    </children>
