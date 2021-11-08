@@ -42,8 +42,8 @@
          <children>
             <TableView fx:id="tblPeriodicite" prefHeight="198.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-width: 4;">
               <columns>
-                <TableColumn prefWidth="99.0" text="Id " />
-                <TableColumn prefWidth="100.0" text="Libellé" />
+                <TableColumn fx:id="id" prefWidth="99.0" text="Id " />
+                <TableColumn fx:id="libelle" prefWidth="100.0" text="Libellé" />
               </columns>
                <FlowPane.margin>
                   <Insets bottom="5.0" />
@@ -56,7 +56,7 @@
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="107.0" prefWidth="735.0">
          <children>
-            <Button fx:id="btnSupprimer" mnemonicParsing="false" onAction="#supprimerPeriodicite" prefHeight="25.0" prefWidth="90.0" text="Supprimer" />
+            <Button fx:id="btnSupprimer" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Supprimer" />
             <Button fx:id="btnModifier" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Modifier" />
          </children>
       </FlowPane>
