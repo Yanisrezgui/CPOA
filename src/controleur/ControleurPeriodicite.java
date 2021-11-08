@@ -36,7 +36,7 @@ public class ControleurPeriodicite {
 			else {
 				Periodicite periodicite = new Periodicite(libelle);
 				dao.getPeriodiciteDAO().create(periodicite);
-				this.lblAffichage.setText(periodicite.toString());
+				
 			}
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());

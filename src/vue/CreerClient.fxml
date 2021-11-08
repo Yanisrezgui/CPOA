@@ -63,12 +63,11 @@
               <columns>
                 <TableColumn prefWidth="75.0" text="Nom" />
                 <TableColumn prefWidth="75.0" text="Prénom" />
-                  <TableColumn prefWidth="75.0" text="Prénom" />
-                  <TableColumn prefWidth="75.0" text="N° de voie" />
-                  <TableColumn prefWidth="123.0" text="Voie" />
-                  <TableColumn prefWidth="81.0" text="Code postal" />
-                  <TableColumn minWidth="0.0" prefWidth="85.0" text="Ville" />
-                  <TableColumn minWidth="0.0" prefWidth="89.0" text="Pays" />
+                  <TableColumn prefWidth="69.0" text="N° de voie" />
+                  <TableColumn prefWidth="206.0" text="Voie" />
+                  <TableColumn prefWidth="111.0" text="Code postal" />
+                  <TableColumn prefWidth="55.0" text="Ville" />
+                  <TableColumn minWidth="0.0" prefWidth="94.0" text="Pays" />
               </columns>
                <FlowPane.margin>
                   <Insets bottom="5.0" />
