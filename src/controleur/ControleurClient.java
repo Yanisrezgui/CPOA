@@ -7,6 +7,7 @@ import dao.DAOFactory;
 import dao.Persistance;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modele.Client;
@@ -20,6 +21,7 @@ public class ControleurClient {
 	private TextField txtVille;
 	private TextField txtPays;
 	private TextField txtCodePostal;
+	private TableView<Client> tblClient;
 	private Label lblAffichage;
 	private Stage vue;
 	
