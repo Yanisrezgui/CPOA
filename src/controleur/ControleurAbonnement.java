@@ -1,10 +1,14 @@
 package controleur;
 
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 import dao.DAOFactory;
 import dao.Persistance;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -13,7 +17,7 @@ import modele.Abonnement;
 import modele.Client;
 import modele.Revue;
 
-public class ControleurAbonnement {
+public class ControleurAbonnement implements Initializable {
 	
 	@FXML
 	private DatePicker datepicDeb;
@@ -66,7 +70,18 @@ public class ControleurAbonnement {
 	}
 
 	
-	//Overide et Initilize
+	@Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+        try {
+			this.cbxClient.setItems(FXCollections.observableArrayList(dao.getClientDAO().findAll()));
+			this.cbxRevue.setItems(FXCollections.observableArrayList(dao.getRevueDAO().findAll()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 	
 	
 	public Stage getVue() {

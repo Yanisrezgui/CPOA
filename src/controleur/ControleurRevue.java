@@ -1,10 +1,14 @@
 package controleur;
 
 import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import dao.DAOFactory;
 import dao.Persistance;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -14,14 +18,13 @@ import javafx.stage.Stage;
 import modele.Periodicite;
 import modele.Revue;
 
-public class ControleurRevue {
+public class ControleurRevue implements Initializable {
 	@FXML
 	private TextField txtTitre;
 	@FXML
 	private TextArea txtDescription;
 	@FXML
 	private TextField txtTarif;
-	// Choice box + Overide + Initialize
 	@FXML
 	private ComboBox<Periodicite> cboxPeriodicite;
 	@FXML
@@ -61,7 +64,6 @@ public class ControleurRevue {
 			else {
 				Revue revue = new Revue(titre, description, Integer.parseInt(tarif), null, periodicite);
 				dao.getRevueDAO().create(revue);	
-				this.lblAffichage.setText(revue.toString());
 			}
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
@@ -96,6 +98,17 @@ public class ControleurRevue {
 //		}
 //	}
 	
+	@Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+        try {
+			this.cboxPeriodicite.setItems(FXCollections.observableArrayList(dao.getPeriodiciteDAO().findAll()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 	
 	public void setVue(Stage vue) {
 		this.vue=vue;
