@@ -52,11 +52,11 @@
          <children>
             <TableView fx:id="tblAbonnement" prefHeight="200.0" prefWidth="427.0" style="-fx-border-style: solid; -fx-border-width: 4;">
               <columns>
-                <TableColumn prefWidth="75.0" text="Id " />
-                <TableColumn prefWidth="89.0" text="Date début" />
-                  <TableColumn prefWidth="93.0" text="Date fin" />
-                  <TableColumn prefWidth="66.0" text="Id client" />
-                  <TableColumn prefWidth="67.0" text="Id revue" />
+                <TableColumn fx:id="id" prefWidth="75.0" text="Id " />
+                <TableColumn fx:id="datedeb" prefWidth="89.0" text="Date début" />
+                  <TableColumn fx:id="datefin" prefWidth="93.0" text="Date fin" />
+                  <TableColumn fx:id="client" prefWidth="66.0" text="Id client" />
+                  <TableColumn fx:id="revue" prefWidth="67.0" text="Id revue" />
               </columns>
                <FlowPane.margin>
                   <Insets bottom="5.0" />

@@ -29,6 +29,11 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>{
 	private Stage vue;
 	@FXML
 	private Button btnSupprimer;
+	@FXML
+	private TableColumn<Periodicite, Integer> id;
+	@FXML
+	private TableColumn<Periodicite, String> libelle;
+	
 	
 	public void ajouterPeriodicite() {
 		String libelle = this.txtLibelle.getText();

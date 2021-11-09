@@ -6,17 +6,23 @@ import java.util.ResourceBundle;
 
 import dao.DAOFactory;
 import dao.Persistance;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modele.Abonnement;
 import modele.Client;
 import modele.Revue;
 
-public class ControleurAbonnement implements Initializable {
+public class ControleurAbonnement implements Initializable, ChangeListener<Abonnement> {
 	
 	@FXML
 	private DatePicker datepicDeb;
@@ -28,6 +34,20 @@ public class ControleurAbonnement implements Initializable {
 	private ChoiceBox<Revue> cbxRevue;
 	@FXML
 	private Stage vue;
+	@FXML
+	private TableView<Abonnement> tblAbonnement;
+	@FXML
+	private TableColumn<Abonnement, Integer> id;
+	@FXML
+	private TableColumn<Abonnement, LocalDate> datedeb;
+	@FXML
+	private TableColumn<Abonnement, LocalDate> datefin;
+	@FXML
+	private TableColumn<Abonnement, Client> client;
+	@FXML
+	private TableColumn<Abonnement, Revue> revue;
+	@FXML
+	private Button btnSupprimer;
 	
 	public void ajouterAbonnement() {
 		LocalDate datedeb = this.datepicDeb.getValue();
@@ -76,6 +96,33 @@ public class ControleurAbonnement implements Initializable {
 	}
 	
 	
+	public void voirAbonnement() {
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		
+		try {
+			TableColumn<Abonnement, Integer> id = new TableColumn<>("id");
+			TableColumn<Abonnement, LocalDate> datedeb = new TableColumn<>("datedeb");
+			TableColumn<Abonnement, LocalDate> datefin = new TableColumn<>("datefin");
+			TableColumn<Abonnement, Client> client = new TableColumn<>("client");
+			TableColumn<Abonnement, Revue> revue = new TableColumn<>("revue");
+			
+			id.setCellValueFactory(new PropertyValueFactory<Abonnement, Integer>("id"));
+			datedeb.setCellValueFactory(new PropertyValueFactory<Abonnement, LocalDate>("datedeb"));
+			datefin.setCellValueFactory(new PropertyValueFactory<Abonnement, LocalDate>("datefin"));
+			client.setCellValueFactory(new PropertyValueFactory<Abonnement, Client>("client"));
+			revue.setCellValueFactory(new PropertyValueFactory<Abonnement, Revue>("revue"));
+			
+			this.tblAbonnement.getColumns().setAll(id,datedeb,datefin,client,revue);
+			this.tblAbonnement.getItems().addAll(dao.getAbonnementDAO().findAll());
+			this.tblAbonnement.getSelectionModel().selectedItemProperty().addListener(this);
+			
+		}catch(Exception sqle) {
+			System.out.println(sqle.getMessage());
+		}
+		
+	}
+	
+	
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -95,6 +142,11 @@ public class ControleurAbonnement implements Initializable {
 	}
 	public void setVue(Stage vue) {
 		this.vue = vue;
+	}
+
+	@Override
+	public void changed(ObservableValue<? extends Abonnement> observable, Abonnement oldValue, Abonnement newValue) {
+		this.btnSupprimer.setDisable(newValue == null);	
 	}
 	
 }
