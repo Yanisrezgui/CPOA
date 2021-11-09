@@ -37,9 +37,17 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	@FXML
 	private String nomfichier="";
 	@FXML
+	private Button btnSupprimer;
+	@FXML
 	private TableView<Revue> tblRevue;
 	@FXML
-	private Button btnSupprimer;
+	private TableColumn<Revue, String> titre;
+	@FXML 
+	private TableColumn<Revue, String> description;
+	@FXML 
+	private TableColumn<Revue, Integer> tarif;
+	@FXML 
+	private TableColumn<Revue, Periodicite> periodicite;
 	
 	
 	
