@@ -33,6 +33,20 @@ public class ControleurClient implements ChangeListener<Client> {
 	private TextField txtCodePostal;
 	@FXML
 	private TableView<Client> tblClient;
+	@FXML 
+	private TableColumn<Client, String> nom;
+	@FXML 
+	private TableColumn<Client, String> prenom;
+	@FXML 
+	private TableColumn<Client, Integer> novoie;
+	@FXML 
+	private TableColumn<Client, String> voie;
+	@FXML 
+	private TableColumn<Client, String> codepostal;
+	@FXML 
+	private TableColumn<Client, String> ville;
+	@FXML 
+	private TableColumn<Client, String> pays;
 	@FXML
 	private Stage vue;
 	@FXML
