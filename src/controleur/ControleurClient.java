@@ -149,24 +149,23 @@ public class ControleurClient implements ChangeListener<Client> {
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		
 		try {
-			TableColumn<Client, String> nom = new TableColumn<>("nom");
-			TableColumn<Client, String> prenom = new TableColumn<>("prenom");
-			TableColumn<Client, Integer> noVoie = new TableColumn<>("novoie");
-			TableColumn<Client, String> voie = new TableColumn<>("voie");
-			TableColumn<Client, String> codePostal = new TableColumn<>("codepostal");
-			TableColumn<Client, String> ville = new TableColumn<>("ville");
-			TableColumn<Client, String> pays = new TableColumn<>("pays");
+//			TableColumn<Client, String> nom = new TableColumn<>("nom");
+//			TableColumn<Client, String> prenom = new TableColumn<>("prenom");
+//			TableColumn<Client, Integer> noVoie = new TableColumn<>("novoie");
+//			TableColumn<Client, String> voie = new TableColumn<>("voie");
+//			TableColumn<Client, String> codePostal = new TableColumn<>("codepostal");
+//			TableColumn<Client, String> ville = new TableColumn<>("ville");
+//			TableColumn<Client, String> pays = new TableColumn<>("pays");
 			
 			nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
 			prenom.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
-			noVoie.setCellValueFactory(new PropertyValueFactory<Client, Integer>("novoie"));
+			novoie.setCellValueFactory(new PropertyValueFactory<Client, Integer>("no_rue"));
 			voie.setCellValueFactory(new PropertyValueFactory<Client, String>("voie"));
-			codePostal.setCellValueFactory(new PropertyValueFactory<Client, String>("codepostal"));
+			codepostal.setCellValueFactory(new PropertyValueFactory<Client, String>("code_postal"));
 			ville.setCellValueFactory(new PropertyValueFactory<Client, String>("ville"));
 			pays.setCellValueFactory(new PropertyValueFactory<Client, String>("pays"));
-			this.tblClient.getItems().addAll(dao.getClientDAO().findAll());
 			
-			this.tblClient.getColumns().setAll(nom,prenom,noVoie,voie,codePostal,ville,pays);
+			this.tblClient.getColumns().setAll(nom,prenom,novoie,voie,codepostal,ville,pays);
 			this.tblClient.getItems().addAll(dao.getClientDAO().findAll());
 			this.tblClient.getSelectionModel().selectedItemProperty().addListener(this);
 			
