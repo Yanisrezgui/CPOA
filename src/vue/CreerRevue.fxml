@@ -57,10 +57,10 @@
          <children>
             <TableView fx:id="tblRevue" prefHeight="206.0" prefWidth="367.0" style="-fx-border-style: solid; -fx-border-width: 4;">
               <columns>
-                <TableColumn prefWidth="90.0" text="Titre" />
-                <TableColumn prefWidth="119.0" text="Description " />
-                  <TableColumn prefWidth="53.0" text="Tarif" />
-                  <TableColumn prefWidth="88.0" text="Périodicité" />
+                <TableColumn fx:id="titre" prefWidth="90.0" text="Titre" />
+                <TableColumn fx:id="description" prefWidth="119.0" text="Description " />
+                  <TableColumn fx:id="tarif" prefWidth="53.0" text="Tarif" />
+                  <TableColumn fx:id="periodicite" prefWidth="88.0" text="Périodicité" />
               </columns>
                <FlowPane.margin>
                   <Insets bottom="5.0" />

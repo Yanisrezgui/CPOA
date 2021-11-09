@@ -6,18 +6,24 @@ import java.util.ResourceBundle;
 
 import dao.DAOFactory;
 import dao.Persistance;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modele.Periodicite;
 import modele.Revue;
 
-public class ControleurRevue implements Initializable {
+public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	@FXML
 	private TextField txtTitre;
 	@FXML
@@ -30,6 +36,10 @@ public class ControleurRevue implements Initializable {
 	private Stage vue;
 	@FXML
 	private String nomfichier="";
+	@FXML
+	private TableView<Revue> tblRevue;
+	@FXML
+	private Button btnSupprimer;
 	
 	
 	
@@ -86,13 +96,39 @@ public class ControleurRevue implements Initializable {
 	 
 	public void supprimerRevue(Revue revue) {
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
-	
+		
 		try {
 			dao.getRevueDAO().delete(revue);
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
 	}
+	
+	
+	public void voirRevue() {
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		
+		try {
+			TableColumn<Revue, String> titre = new TableColumn<>("titre");
+			TableColumn<Revue, String> description = new TableColumn<>("description");
+			TableColumn<Revue, Integer> tarif = new TableColumn<>("tarif");
+			TableColumn<Periodicite, String> periodicite = new TableColumn<>("periodicite");
+			
+			titre.setCellValueFactory(new PropertyValueFactory<Revue, String>("titre"));
+			description.setCellValueFactory(new PropertyValueFactory<Revue, String>("description"));
+			tarif.setCellValueFactory(new PropertyValueFactory<Revue, Integer>("tarif"));
+			periodicite.setCellValueFactory(new PropertyValueFactory<Periodicite, String>("periodicite"));
+			
+			this.tblRevue.getColumns().setAll(titre, description, tarif, periodicite);
+			this.tblRevue.getItems().addAll(dao.getPeriodiciteDAO().findAll());
+			this.tblRevue.getSelectionModel().selectedItemProperty().addListener(this);
+			
+		}catch(Exception sqle) {
+			System.out.println(sqle.getMessage());
+		}
+	}
+	
+	
 	
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -106,11 +142,19 @@ public class ControleurRevue implements Initializable {
 		}
     }
 	
+	
 	public void setVue(Stage vue) {
 		this.vue=vue;
 	}
 	public Stage getVue() {
 		return vue;
+	}
+
+
+	@Override
+	public void changed(ObservableValue<? extends Revue> observable, Revue oldValue, Revue newValue) {
+		this.btnSupprimer.setDisable(newValue == null);	
+		
 	}
 	
 }
