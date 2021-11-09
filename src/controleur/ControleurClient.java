@@ -5,13 +5,18 @@ import java.util.regex.Pattern;
 
 import dao.DAOFactory;
 import dao.Persistance;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modele.Client;
 
-public class ControleurClient {
+public class ControleurClient implements ChangeListener<Client> {
 	@FXML
 	private TextField txtNom;
 	@FXML
@@ -30,6 +35,8 @@ public class ControleurClient {
 	private TableView<Client> tblClient;
 	@FXML
 	private Stage vue;
+	@FXML
+	private Button btnSupprimer;
 	
 	public void ajouterClient(){
 		String nom = this.txtNom.getText();
@@ -112,6 +119,7 @@ public class ControleurClient {
 		
 	}
 	
+	
 	public void supprimerClient(Client client) {
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 	
@@ -123,15 +131,53 @@ public class ControleurClient {
 	}
 	
 	
+	public void voirClient() {
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		
+		try {
+			TableColumn<Client, String> nom = new TableColumn<>("nom");
+			TableColumn<Client, String> prenom = new TableColumn<>("prenom");
+			TableColumn<Client, Integer> noVoie = new TableColumn<>("novoie");
+			TableColumn<Client, String> voie = new TableColumn<>("voie");
+			TableColumn<Client, String> codePostal = new TableColumn<>("codepostal");
+			TableColumn<Client, String> ville = new TableColumn<>("ville");
+			TableColumn<Client, String> pays = new TableColumn<>("pays");
+			
+			nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
+			prenom.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
+			noVoie.setCellValueFactory(new PropertyValueFactory<Client, Integer>("novoie"));
+			voie.setCellValueFactory(new PropertyValueFactory<Client, String>("voie"));
+			codePostal.setCellValueFactory(new PropertyValueFactory<Client, String>("codepostal"));
+			ville.setCellValueFactory(new PropertyValueFactory<Client, String>("ville"));
+			pays.setCellValueFactory(new PropertyValueFactory<Client, String>("pays"));
+			
+			this.tblClient.getColumns().setAll(nom,prenom,noVoie,voie,codePostal,ville,pays);
+			this.tblClient.getItems().addAll(dao.getClientDAO().findAll());
+			this.tblClient.getSelectionModel().selectedItemProperty().addListener(this);
+			
+		}catch(Exception sqle) {
+			System.out.println(sqle.getMessage());
+		}
+		
+	}
+	
+	
 	public void afficheAlerte(String message) {
 		System.out.println("alerte"+message);
 	}
+	
 	
 	public Stage getVue() {
 		return vue;
 	}
 	public void setVue(Stage vue) {
 		this.vue = vue;
+	}
+
+
+	@Override
+	public void changed(ObservableValue<? extends Client> observale, Client oldValue, Client newValue) {
+		this.btnSupprimer.setDisable(newValue == null);	
 	}
 	
 }

@@ -61,13 +61,13 @@
          <children>
             <TableView fx:id="tblClient" prefHeight="200.0" prefWidth="696.0" style="-fx-border-style: solid; -fx-border-width: 4;">
               <columns>
-                <TableColumn prefWidth="75.0" text="Nom" />
-                <TableColumn prefWidth="75.0" text="Prénom" />
-                  <TableColumn prefWidth="69.0" text="N° de voie" />
-                  <TableColumn prefWidth="206.0" text="Voie" />
-                  <TableColumn prefWidth="111.0" text="Code postal" />
-                  <TableColumn prefWidth="55.0" text="Ville" />
-                  <TableColumn minWidth="0.0" prefWidth="94.0" text="Pays" />
+                <TableColumn fx:id="nom" prefWidth="75.0" text="Nom" />
+                <TableColumn fx:id="prenom" prefWidth="75.0" text="Prénom" />
+                  <TableColumn fx:id="novoie" prefWidth="69.0" text="N° de voie" />
+                  <TableColumn fx:id="voie" prefWidth="206.0" text="Voie" />
+                  <TableColumn fx:id="codepostal" prefWidth="111.0" text="Code postal" />
+                  <TableColumn fx:id="ville" prefWidth="55.0" text="Ville" />
+                  <TableColumn fx:id="pays" minWidth="0.0" prefWidth="94.0" text="Pays" />
               </columns>
                <FlowPane.margin>
                   <Insets bottom="5.0" />

@@ -9,9 +9,12 @@ import java.util.regex.Pattern;
 
 import dao.DAOFactory;
 import dao.Persistance;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -19,13 +22,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modele.Periodicite;
 
-public class ControleurPeriodicite {
+public class ControleurPeriodicite implements ChangeListener<Periodicite>{
 	@FXML
 	private TextField txtLibelle;
 	@FXML
 	private TableView<Periodicite> tblPeriodicite;
 	@FXML
 	private Stage vue;
+	@FXML
+	private Button btnSupprimer;
 	
 	public void ajouterPeriodicite() {
 		String libelle = this.txtLibelle.getText();
@@ -63,17 +68,15 @@ public class ControleurPeriodicite {
 			Libelle.setCellValueFactory(new PropertyValueFactory<Periodicite, String>("Libelle"));
 			
 			this.tblPeriodicite.getColumns().setAll(idLibelle,Libelle);
-			
 			this.tblPeriodicite.getItems().addAll(dao.getPeriodiciteDAO().findAll());
+			this.tblPeriodicite.getSelectionModel().selectedItemProperty().addListener(this);
 					
 		}catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
-		
-		
 	}
 	
-	/*public void supprimerPeriodicite(Periodicite periodicite) {
+	public void supprimerPeriodicite(Periodicite periodicite) {
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 	
 		try {
@@ -81,7 +84,7 @@ public class ControleurPeriodicite {
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
-	}*/
+	}
 	
 
 	
@@ -90,6 +93,11 @@ public class ControleurPeriodicite {
 	}
 	public void setVue(Stage vue) {
 		this.vue = vue;
+	}
+
+	@Override
+	public void changed(ObservableValue<? extends Periodicite> observable, Periodicite oldValue, Periodicite newValue) {
+		this.btnSupprimer.setDisable(newValue == null);	
 	}
 	
 }
