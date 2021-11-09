@@ -112,15 +112,15 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 			TableColumn<Revue, String> titre = new TableColumn<>("titre");
 			TableColumn<Revue, String> description = new TableColumn<>("description");
 			TableColumn<Revue, Integer> tarif = new TableColumn<>("tarif");
-			TableColumn<Periodicite, String> periodicite = new TableColumn<>("periodicite");
+			TableColumn<Revue, Periodicite> periodicite = new TableColumn<>("periodicite");
 			
 			titre.setCellValueFactory(new PropertyValueFactory<Revue, String>("titre"));
 			description.setCellValueFactory(new PropertyValueFactory<Revue, String>("description"));
 			tarif.setCellValueFactory(new PropertyValueFactory<Revue, Integer>("tarif"));
-			periodicite.setCellValueFactory(new PropertyValueFactory<Periodicite, String>("periodicite"));
+			periodicite.setCellValueFactory(new PropertyValueFactory<Revue, Periodicite>("periodicite"));
 			
 			this.tblRevue.getColumns().setAll(titre, description, tarif, periodicite);
-			this.tblRevue.getItems().addAll(dao.getPeriodiciteDAO().findAll());
+			this.tblRevue.getItems().addAll(dao.getRevueDAO().findAll());
 			this.tblRevue.getSelectionModel().selectedItemProperty().addListener(this);
 			
 		}catch(Exception sqle) {
