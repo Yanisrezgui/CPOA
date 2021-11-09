@@ -164,6 +164,7 @@ public class ControleurClient implements ChangeListener<Client> {
 			codePostal.setCellValueFactory(new PropertyValueFactory<Client, String>("codepostal"));
 			ville.setCellValueFactory(new PropertyValueFactory<Client, String>("ville"));
 			pays.setCellValueFactory(new PropertyValueFactory<Client, String>("pays"));
+			this.tblClient.getItems().addAll(dao.getClientDAO().findAll());
 			
 			this.tblClient.getColumns().setAll(nom,prenom,noVoie,voie,codePostal,ville,pays);
 			this.tblClient.getItems().addAll(dao.getClientDAO().findAll());
