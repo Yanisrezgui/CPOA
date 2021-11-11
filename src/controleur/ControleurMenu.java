@@ -5,10 +5,8 @@ import java.util.ResourceBundle;
 
 import dao.DAOFactory;
 import dao.Persistance;
-import dao.SolutionPersistance;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 import vue.VueAbonnement;
@@ -22,6 +20,7 @@ public class ControleurMenu implements Initializable {
 	private RadioButton rdbMysql;
 	@FXML
 	private RadioButton rdbListeMemoire;
+	private DAOFactory dao = choixPersistance();
 	
 	
 	
@@ -39,6 +38,7 @@ public class ControleurMenu implements Initializable {
 	
 	public void lancePeriodicite() {
 		VuePeriodicite vue = new VuePeriodicite();
+		vue.getControleur().setDao(dao);
 	}
 	
 	public  DAOFactory choixPersistance() {

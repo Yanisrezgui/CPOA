@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import dao.DAO;
 import dao.DAOFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,12 +35,13 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	@FXML
 	private TableColumn<Periodicite, String> libelle;
 	private static ControleurMenu controleurMenu;
+	private static DAOFactory dao;
 	
 	
 	public void ajouterPeriodicite() {
 		String libelle = this.txtLibelle.getText();
 		
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 		
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
 		Matcher matcherLibelle = pattern.matcher(libelle);
@@ -63,7 +65,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	}
 	
 	public void voirPeriodicite() {
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 		
 		try {
 			
@@ -81,7 +83,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	}
 	
 	public void supprimerPeriodicite() {
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 	
 		try {
 			dao.getPeriodiciteDAO().delete(this.tblPeriodicite.getSelectionModel().getSelectedItem());
@@ -98,6 +100,12 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	}
 	public void setVue(Stage vue) {
 		this.vue = vue;
+	}
+	public static DAOFactory getDao() {
+		return dao;
+	}
+	public static void setDao(DAOFactory dao) {
+		ControleurPeriodicite.dao = dao;
 	}
 
 	@Override
