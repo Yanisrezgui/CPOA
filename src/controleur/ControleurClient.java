@@ -154,14 +154,6 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		
 		try {
-			TableColumn<Client, String> nom = new TableColumn<>("nom");
-			TableColumn<Client, String> prenom = new TableColumn<>("prenom");
-			TableColumn<Client, Integer> novoie = new TableColumn<>("novoie");
-			TableColumn<Client, String> voie = new TableColumn<>("voie");
-			TableColumn<Client, String> codepostal = new TableColumn<>("codepostal");
-			TableColumn<Client, String> ville = new TableColumn<>("ville");
-			TableColumn<Client, String> pays = new TableColumn<>("pays");
-			
 			nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
 			prenom.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
 			novoie.setCellValueFactory(new PropertyValueFactory<Client, Integer>("novoie"));
