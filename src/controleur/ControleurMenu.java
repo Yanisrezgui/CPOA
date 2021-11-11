@@ -40,8 +40,12 @@ public class ControleurMenu implements Initializable {
 				rdbMysql.setDisable(true);
 				dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
 			}
-			VueRevue vue = new VueRevue();
-			vue.getControleur().setDao(dao);
+			try {
+				VueRevue vue = new VueRevue();
+				vue.getControleur().setDao(dao);
+			} catch(Exception sqle) {
+				sqle.printStackTrace();
+			}
 		}
 	}
 	
@@ -58,8 +62,12 @@ public class ControleurMenu implements Initializable {
 				rdbMysql.setDisable(true);
 				dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
 			}
-			VueClient vue = new VueClient();
-			vue.getControleur().setDao(dao);
+			try {
+				VueClient vue = new VueClient();
+				vue.getControleur().setDao(dao);
+			} catch(Exception sqle) {
+				sqle.printStackTrace();
+			}
 		}
 	}
 
@@ -76,8 +84,12 @@ public class ControleurMenu implements Initializable {
 				rdbMysql.setDisable(true);
 				dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
 			}
-			VueAbonnement vue = new VueAbonnement();
-			vue.getControleur().setDao(dao);
+			try {
+				VueAbonnement vue = new VueAbonnement();
+				vue.getControleur().setDao(dao);
+			} catch(Exception sqle) {
+				sqle.printStackTrace();
+			}
 		}
 	}
 	
@@ -89,19 +101,20 @@ public class ControleurMenu implements Initializable {
 		else {
 			if(rdbMysql.isSelected()) {
 				 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
-				 VuePeriodicite vue = new VuePeriodicite();
-					vue.getControleur().setDao(dao);
 			}
 			else {
 				rdbMysql.setDisable(true);
-				dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE);
+				dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
+			}
+			try {
 				VuePeriodicite vue = new VuePeriodicite();
 				vue.getControleur().setDao(dao);
+			} catch(Exception sqle) {
+				sqle.printStackTrace();
 			}
-			
-		}
+		}	
 	}
-		
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
