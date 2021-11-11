@@ -23,7 +23,7 @@ public class ControleurMenu implements Initializable {
 	private RadioButton rdbListeMemoire;
 	@FXML
 	private ToggleGroup choixpers; 
-	private DAOFactory dao = null;
+	private DAOFactory dao;
 	
 	
 	
@@ -57,27 +57,7 @@ public class ControleurMenu implements Initializable {
 			vue.getControleur().setDao(dao);
 		}
 	}
-	
-//	public  DAOFactory choixPersistance() {
-//		DAOFactory dao;
-//		
-//		if(!rdbListeMemoire.isSelected() && !rdbMysql.isSelected()) {
-//			throw new IllegalArgumentException("Selectionner une persistance");
-//		}
-//		else if(rdbMysql.isSelected()) {
-//			rdbListeMemoire.setDisable(true);
-//			 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
-//		}
-//		else {
-//			rdbMysql.setDisable(true);
-//			dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
-//		}
-//		
-//		return dao;
-//		
-//	}
-
-	
+		
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
