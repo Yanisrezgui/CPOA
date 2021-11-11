@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import dao.DAOFactory;
-import dao.Persistance;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -48,6 +47,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	private TableColumn<Abonnement, Revue> revue;
 	@FXML
 	private Button btnSupprimer;
+	private static ControleurMenu controleurMenu;
 	
 	public void ajouterAbonnement() {
 		LocalDate datedeb = this.datepicDeb.getValue();
@@ -55,7 +55,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 		Client client = this.cbxClient.getValue();
 		Revue revue = this.cbxRevue.getValue();
 		
-		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 		
 		
 			if(datedeb == null) {
@@ -89,7 +89,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	}
 
 	public void supprimerAbonnement(Abonnement abonnement) {
-		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 	
 		try {
 			dao.getAbonnementDAO().delete(abonnement);
@@ -101,7 +101,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	
 	
 	public void voirAbonnement() {
-		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 		
 		try {			
 			id.setCellValueFactory(new PropertyValueFactory<Abonnement, Integer>("idAbonnement"));
@@ -125,7 +125,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
     public void initialize(URL location, ResourceBundle resources) {
 		this.voirAbonnement();
 
-        DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+        DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
         try {
 			this.cbxClient.setItems(FXCollections.observableArrayList(dao.getClientDAO().findAll()));
 			this.cbxRevue.setItems(FXCollections.observableArrayList(dao.getRevueDAO().findAll()));

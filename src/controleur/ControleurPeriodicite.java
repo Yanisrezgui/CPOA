@@ -7,10 +7,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-
 import dao.DAOFactory;
-import dao.Persistance;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -36,12 +33,13 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	private TableColumn<Periodicite, Integer> id;
 	@FXML
 	private TableColumn<Periodicite, String> libelle;
+	private static ControleurMenu controleurMenu;
 	
 	
 	public void ajouterPeriodicite() {
 		String libelle = this.txtLibelle.getText();
 		
-		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 		
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
 		Matcher matcherLibelle = pattern.matcher(libelle);
@@ -65,7 +63,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	}
 	
 	public void voirPeriodicite() {
-		DAOFactory dao=DAOFactory.getDAOFactory(Persistance.MYSQL);
+		DAOFactory dao=DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 		
 		try {
 			
@@ -83,7 +81,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	}
 	
 	public void supprimerPeriodicite(Periodicite periodicite) {
-		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 	
 		try {
 			dao.getPeriodiciteDAO().delete(periodicite);

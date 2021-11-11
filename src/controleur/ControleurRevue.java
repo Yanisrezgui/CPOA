@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dao.DAOFactory;
-import dao.Persistance;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -48,6 +47,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	private TableColumn<Revue, Integer> tarif;
 	@FXML 
 	private TableColumn<Revue, Periodicite> periodicite;
+	private static ControleurMenu controleurMenu;
 	
 	
 	
@@ -58,7 +58,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 		String visuel = "test";
 		Periodicite periodicite = this.cboxPeriodicite.getSelectionModel().getSelectedItem();
 		
-		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 		
 		
 			if(titre == null || "".equals(titre)) {
@@ -105,7 +105,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	
 	 
 	public void supprimerRevue(Revue revue) {
-		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 		
 		try {
 			dao.getRevueDAO().delete(revue);
@@ -117,7 +117,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	
 	
 	public void voirRevue() {
-		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 		
 		try {
 			titre.setCellValueFactory(new PropertyValueFactory<Revue, String>("titre"));
@@ -140,7 +140,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
     public void initialize(URL location, ResourceBundle resources) {
 		this.voirRevue();
 		
-        DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+        DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
         try {
 			this.cboxPeriodicite.setItems(FXCollections.observableArrayList(dao.getPeriodiciteDAO().findAll()));
 		} catch (Exception e) {
