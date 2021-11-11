@@ -1,22 +1,28 @@
 package controleur;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import dao.DAOFactory;
 import dao.Persistance;
 import dao.SolutionPersistance;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.stage.Stage;
 import vue.VueAbonnement;
 import vue.VueClient;
 import vue.VuePeriodicite;
 import vue.VueRevue;
 
-public class ControleurMenu {
+public class ControleurMenu implements Initializable {
+	private Stage vue;
 	@FXML 
-	RadioButton rdbMysql;
+	private RadioButton rdbMysql;
 	@FXML
-	RadioButton rdbListeMemoire;
-	SolutionPersistance persistance;
+	private RadioButton rdbListeMemoire;
+	
 	
 	
 	public void lanceRevue() {
@@ -53,4 +59,19 @@ public class ControleurMenu {
 		return dao;
 		
 	}
+
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+	}
+
+	public Stage getVue() {
+		return vue;
+	}
+	public void setVue(Stage vue) {
+		this.vue = vue;
+	}
+	
+	
 }
