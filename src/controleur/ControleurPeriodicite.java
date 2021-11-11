@@ -84,8 +84,8 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 	
 		try {
-			dao.getPeriodiciteDAO().delete(periodicite);
-			this.tblPeriodicite.getItems().remove(periodicite);
+			dao.getPeriodiciteDAO().delete(this.tblPeriodicite.getSelectionModel().getSelectedItem());
+			this.tblPeriodicite.getItems().remove(this.tblPeriodicite.getSelectionModel().getSelectedItem());
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}

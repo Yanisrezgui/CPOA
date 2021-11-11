@@ -108,8 +108,8 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 		
 		try {
-			dao.getRevueDAO().delete(revue);
-			this.tblRevue.getItems().remove(revue);
+			dao.getRevueDAO().delete(this.tblRevue.getSelectionModel().getSelectedItem());
+			this.tblRevue.getItems().remove(this.tblRevue.getSelectionModel().getSelectedItem());
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}

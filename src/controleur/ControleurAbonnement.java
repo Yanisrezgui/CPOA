@@ -88,12 +88,12 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 
 	}
 
-	public void supprimerAbonnement(Abonnement abonnement) {
+	public void supprimerAbonnement() {
 		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 	
 		try {
-			dao.getAbonnementDAO().delete(abonnement);
-			this.tblAbonnement.getItems().remove(abonnement);
+			dao.getAbonnementDAO().delete(this.tblAbonnement.getSelectionModel().getSelectedItem());
+			this.tblAbonnement.getItems().remove(this.tblAbonnement.getSelectionModel().getSelectedItem());
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
