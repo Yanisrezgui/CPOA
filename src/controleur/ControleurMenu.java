@@ -8,6 +8,7 @@ import dao.Persistance;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import vue.VueAbonnement;
 import vue.VueClient;
@@ -20,6 +21,8 @@ public class ControleurMenu implements Initializable {
 	private RadioButton rdbMysql;
 	@FXML
 	private RadioButton rdbListeMemoire;
+	@FXML
+	private ToggleGroup choixpers; 
 	private DAOFactory dao = null;
 	
 	
@@ -38,19 +41,21 @@ public class ControleurMenu implements Initializable {
 	
 	public void lancePeriodicite() {
 		
-		if(!rdbListeMemoire.isSelected() && !rdbMysql.isSelected()) {
+		if(choixpers.getSelectedToggle() == null) {
 			throw new IllegalArgumentException("Selectionner une persistance");
 		}
-		else if(rdbMysql.isSelected()) {
-			 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
-			 rdbListeMemoire.setDisable(true);
-		}
 		else {
-			rdbMysql.setDisable(true);
-			dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
+			if(rdbMysql.isSelected()) {
+				 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+				 rdbListeMemoire.setDisable(true);
+			}
+			else {
+				rdbMysql.setDisable(true);
+				dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
+			}
+			VuePeriodicite vue = new VuePeriodicite();
+			vue.getControleur().setDao(dao);
 		}
-		VuePeriodicite vue = new VuePeriodicite();
-		vue.getControleur().setDao(dao);
 	}
 	
 //	public  DAOFactory choixPersistance() {

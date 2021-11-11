@@ -40,8 +40,11 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <RadioButton fx:id="rdbMysql" mnemonicParsing="false" text="MySQL" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <RadioButton fx:id="rdbListeMemoire" mnemonicParsing="false" text="Liste Mémoire" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <RadioButton fx:id="rdbMysql" mnemonicParsing="false" text="MySQL" GridPane.columnIndex="2" GridPane.rowIndex="2" >
+            	<toggleGroup>
+            		<ToggleGroup fx:id="choixpers"></ToggleGroup>
+            	</toggleGroup></RadioButton>
+            <RadioButton fx:id="rdbListeMemoire" mnemonicParsing="false" text="Liste Mémoire" GridPane.columnIndex="2" GridPane.rowIndex="3" togglGroup="$choixpers" />
          </children>
       </GridPane>
    </children>
