@@ -20,7 +20,7 @@ public class ControleurMenu implements Initializable {
 	private RadioButton rdbMysql;
 	@FXML
 	private RadioButton rdbListeMemoire;
-	private DAOFactory dao = choixPersistance();
+	private DAOFactory dao = null;
 	
 	
 	
@@ -37,28 +37,38 @@ public class ControleurMenu implements Initializable {
 	}
 	
 	public void lancePeriodicite() {
-		VuePeriodicite vue = new VuePeriodicite();
-		vue.getControleur().setDao(dao);
-	}
-	
-	public  DAOFactory choixPersistance() {
-		DAOFactory dao;
 		
 		if(!rdbListeMemoire.isSelected() && !rdbMysql.isSelected()) {
 			throw new IllegalArgumentException("Selectionner une persistance");
 		}
 		else if(rdbMysql.isSelected()) {
-			rdbListeMemoire.setDisable(true);
 			 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		}
 		else {
-			rdbMysql.setDisable(true);
 			dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
 		}
-		
-		return dao;
-		
+		VuePeriodicite vue = new VuePeriodicite();
+		vue.getControleur().setDao(dao);
 	}
+	
+//	public  DAOFactory choixPersistance() {
+//		DAOFactory dao;
+//		
+//		if(!rdbListeMemoire.isSelected() && !rdbMysql.isSelected()) {
+//			throw new IllegalArgumentException("Selectionner une persistance");
+//		}
+//		else if(rdbMysql.isSelected()) {
+//			rdbListeMemoire.setDisable(true);
+//			 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+//		}
+//		else {
+//			rdbMysql.setDisable(true);
+//			dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
+//		}
+//		
+//		return dao;
+//		
+//	}
 
 	
 	@Override
