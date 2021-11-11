@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import dao.DAOFactory;
+import dao.Persistance;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -64,7 +65,7 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 		String ville = this.txtVille.getText();
 		String pays = this.txtPays.getText();
 		
-		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
 		Matcher matcherNom = pattern.matcher(nom);
@@ -139,7 +140,7 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 	
 	
 	public void supprimerClient() {
-		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 	
 		try {
 			dao.getClientDAO().delete(this.tblClient.getSelectionModel().getSelectedItem());
@@ -151,7 +152,7 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 	
 	
 	public void voirClient() {
-		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		
 		try {
 			nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
