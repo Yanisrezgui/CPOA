@@ -1,5 +1,7 @@
 package controleur;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,6 +10,7 @@ import dao.Persistance;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,7 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modele.Client;
 
-public class ControleurClient implements ChangeListener<Client> {
+public class ControleurClient implements ChangeListener<Client>, Initializable {
 	@FXML
 	private TextField txtNom;
 	@FXML
@@ -126,6 +129,7 @@ public class ControleurClient implements ChangeListener<Client> {
 				try {
 				Client client = new Client(nom, prenom, novoie, voie, codePostal, ville, pays);
 				dao.getClientDAO().create(client);
+				this.tblClient.getItems().add(client);
 				}catch(Exception sqle) {
 					System.out.println("erreur controleur client "+sqle.getMessage());
 				}
@@ -139,6 +143,7 @@ public class ControleurClient implements ChangeListener<Client> {
 	
 		try {
 			dao.getClientDAO().delete(client);
+			this.tblClient.getItems().remove(client);
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
@@ -159,9 +164,9 @@ public class ControleurClient implements ChangeListener<Client> {
 			
 			nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
 			prenom.setCellValueFactory(new PropertyValueFactory<Client, String>("prenom"));
-			novoie.setCellValueFactory(new PropertyValueFactory<Client, Integer>("no_rue"));
+			novoie.setCellValueFactory(new PropertyValueFactory<Client, Integer>("novoie"));
 			voie.setCellValueFactory(new PropertyValueFactory<Client, String>("voie"));
-			codepostal.setCellValueFactory(new PropertyValueFactory<Client, String>("code_postal"));
+			codepostal.setCellValueFactory(new PropertyValueFactory<Client, String>("codepostal"));
 			ville.setCellValueFactory(new PropertyValueFactory<Client, String>("ville"));
 			pays.setCellValueFactory(new PropertyValueFactory<Client, String>("pays"));
 			
@@ -192,6 +197,13 @@ public class ControleurClient implements ChangeListener<Client> {
 	@Override
 	public void changed(ObservableValue<? extends Client> observale, Client oldValue, Client newValue) {
 		this.btnSupprimer.setDisable(newValue == null);	
+	}
+
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		this.voirClient();
+		
 	}
 	
 }
