@@ -80,7 +80,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 		}
 	}
 	
-	public void supprimerPeriodicite(Periodicite periodicite) {
+	public void supprimerPeriodicite() {
 		DAOFactory dao = controleurMenu.choixPersistance();
 	
 		try {

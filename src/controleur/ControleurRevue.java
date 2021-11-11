@@ -104,7 +104,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	}
 	
 	 
-	public void supprimerRevue(Revue revue) {
+	public void supprimerRevue() {
 		DAOFactory dao = controleurMenu.choixPersistance();
 		
 		try {
