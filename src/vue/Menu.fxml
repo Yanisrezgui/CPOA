@@ -41,9 +41,8 @@
                </font>
             </Label>
             <RadioButton fx:id="rdbMysql" mnemonicParsing="false" text="MySQL" GridPane.columnIndex="2" GridPane.rowIndex="2" >
-            	<toggleGroup>
             		<ToggleGroup fx:id="choixpers"></ToggleGroup>
-            	</toggleGroup></RadioButton>
+           	</RadioButton>
             <RadioButton fx:id="rdbListeMemoire" mnemonicParsing="false" text="Liste Mémoire" GridPane.columnIndex="2" GridPane.rowIndex="3" togglGroup="$choixpers" />
          </children>
       </GridPane>
