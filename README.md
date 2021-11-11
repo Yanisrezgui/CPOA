@@ -8,11 +8,12 @@ Nous estimons la répartion du travail à :
 - 40 pour Yanis 
 
 Ce qui fonctionne : 
-- Ajout suppression de donnée dans la BDD et la liste mémoire 
+- Les méthodes d'ajout suppression et de modification de donnée dans la BDD et la liste mémoire 
 - Affichage des données dans les tables de chaques pages 
 - Suppression de données depuis les tables 
-- 
+- L'ajout et la suppression de données via les interface graphiques
 
 Ce qui ne fonctionne pas :
 - L'import d'un fichier client CSV n'as pas été fait 
-- La modification d'un client n'as pas été implémenté par manque de temps 
+- La modification d'un client n'as pas été implémenté par manque de temps dans les vues
+- 
