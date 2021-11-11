@@ -67,7 +67,6 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 		
 		try {
 			
-			
 			id.setCellValueFactory(new PropertyValueFactory<Periodicite, Integer>("idPeriodicite"));
 			libelle.setCellValueFactory(new PropertyValueFactory<Periodicite, String>("Libelle"));
 			
@@ -103,6 +102,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 		return dao;
 	}
 	public void setDao(DAOFactory dao) {
+		
 		this.dao = dao;
 	}
 
