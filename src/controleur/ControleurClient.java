@@ -138,12 +138,12 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 	}
 	
 	
-	public void supprimerClient(Client client) {
+	public void supprimerClient() {
 		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
 	
 		try {
-			dao.getClientDAO().delete(client);
-			this.tblClient.getItems().remove(client);
+			dao.getClientDAO().delete(this.tblClient.getSelectionModel().getSelectedItem());
+			this.tblClient.getItems().remove(this.tblClient.getSelectionModel().getSelectedItem());
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
