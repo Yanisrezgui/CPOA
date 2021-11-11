@@ -39,7 +39,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	public void ajouterPeriodicite() {
 		String libelle = this.txtLibelle.getText();
 		
-		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+		DAOFactory dao = controleurMenu.choixPersistance();
 		
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
 		Matcher matcherLibelle = pattern.matcher(libelle);
@@ -63,7 +63,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	}
 	
 	public void voirPeriodicite() {
-		DAOFactory dao=DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+		DAOFactory dao = controleurMenu.choixPersistance();
 		
 		try {
 			
@@ -81,7 +81,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	}
 	
 	public void supprimerPeriodicite(Periodicite periodicite) {
-		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+		DAOFactory dao = controleurMenu.choixPersistance();
 	
 		try {
 			dao.getPeriodiciteDAO().delete(this.tblPeriodicite.getSelectionModel().getSelectedItem());

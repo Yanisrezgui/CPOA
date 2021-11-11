@@ -5,6 +5,7 @@ import dao.Persistance;
 import dao.SolutionPersistance;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
 import vue.VueAbonnement;
 import vue.VueClient;
 import vue.VuePeriodicite;
@@ -12,9 +13,9 @@ import vue.VueRevue;
 
 public class ControleurMenu {
 	@FXML 
-	CheckBox chxListeMemoire;
+	RadioButton rdbMysql;
 	@FXML
-	CheckBox chxMysql;
+	RadioButton rdbListeMemoire;
 	SolutionPersistance persistance;
 	
 	
@@ -37,15 +38,15 @@ public class ControleurMenu {
 	public  DAOFactory choixPersistance() {
 		DAOFactory dao;
 		
-		if(!chxListeMemoire.isSelected() && !chxMysql.isSelected()) {
+		if(!rdbListeMemoire.isSelected() && !rdbMysql.isSelected()) {
 			throw new IllegalArgumentException("Selectionner une persistance");
 		}
-		else if(chxMysql.isSelected()) {
-			chxListeMemoire.setDisable(true);
+		else if(rdbMysql.isSelected()) {
+			rdbListeMemoire.setDisable(true);
 			 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		}
 		else {
-			chxMysql.setDisable(true);
+			rdbMysql.setDisable(true);
 			dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
 		}
 		

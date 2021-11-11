@@ -58,7 +58,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 		String visuel = "test";
 		Periodicite periodicite = this.cboxPeriodicite.getSelectionModel().getSelectedItem();
 		
-		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+		DAOFactory dao = controleurMenu.choixPersistance();
 		
 		
 			if(titre == null || "".equals(titre)) {
@@ -105,7 +105,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	
 	 
 	public void supprimerRevue(Revue revue) {
-		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+		DAOFactory dao = controleurMenu.choixPersistance();
 		
 		try {
 			dao.getRevueDAO().delete(this.tblRevue.getSelectionModel().getSelectedItem());
@@ -117,7 +117,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	
 	
 	public void voirRevue() {
-		DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+		DAOFactory dao = controleurMenu.choixPersistance();
 		
 		try {
 			titre.setCellValueFactory(new PropertyValueFactory<Revue, String>("titre"));
@@ -140,7 +140,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
     public void initialize(URL location, ResourceBundle resources) {
 		this.voirRevue();
 		
-        DAOFactory dao = DAOFactory.getDAOFactory(controleurMenu.choixPersistance());
+        DAOFactory dao = controleurMenu.choixPersistance();
         try {
 			this.cboxPeriodicite.setItems(FXCollections.observableArrayList(dao.getPeriodiciteDAO().findAll()));
 		} catch (Exception e) {
