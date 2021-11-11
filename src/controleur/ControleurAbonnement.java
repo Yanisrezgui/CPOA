@@ -57,7 +57,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 		
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		
-		try {
+		
 			if(datedeb == null) {
 				throw new IllegalArgumentException("Selectionner une date de début");
 			}
@@ -77,12 +77,15 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 				throw new IllegalArgumentException("Selectionner une revue");
 			}
 			else {
-				Abonnement abonnement = new Abonnement(datedeb, datefin, client, revue);
-				dao.getAbonnementDAO().create(abonnement);
+				try {
+					Abonnement abonnement = new Abonnement(datedeb, datefin, client, revue);
+					dao.getAbonnementDAO().create(abonnement);
+					this.tblAbonnement.getItems().add(abonnement);
+				}catch(Exception sqle) {
+					System.out.println(sqle.getMessage());
+				}
 			}
-		}catch(Exception sqle) {
-			System.out.println(sqle.getMessage());
-		}
+
 	}
 
 	public void supprimerAbonnement(Abonnement abonnement) {
@@ -90,6 +93,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	
 		try {
 			dao.getAbonnementDAO().delete(abonnement);
+			this.tblAbonnement.getItems().remove(abonnement);
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
@@ -99,14 +103,8 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	public void voirAbonnement() {
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		
-		try {
-			TableColumn<Abonnement, Integer> id = new TableColumn<>("id");
-			TableColumn<Abonnement, LocalDate> datedeb = new TableColumn<>("datedeb");
-			TableColumn<Abonnement, LocalDate> datefin = new TableColumn<>("datefin");
-			TableColumn<Abonnement, Client> client = new TableColumn<>("client");
-			TableColumn<Abonnement, Revue> revue = new TableColumn<>("revue");
-			
-			id.setCellValueFactory(new PropertyValueFactory<Abonnement, Integer>("id"));
+		try {			
+			id.setCellValueFactory(new PropertyValueFactory<Abonnement, Integer>("idAbonnement"));
 			datedeb.setCellValueFactory(new PropertyValueFactory<Abonnement, LocalDate>("datedeb"));
 			datefin.setCellValueFactory(new PropertyValueFactory<Abonnement, LocalDate>("datefin"));
 			client.setCellValueFactory(new PropertyValueFactory<Abonnement, Client>("client"));
@@ -125,6 +123,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
+		this.voirAbonnement();
 
         DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
         try {

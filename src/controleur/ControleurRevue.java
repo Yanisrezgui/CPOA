@@ -60,7 +60,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 		
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		
-		try {
+		
 			if(titre == null || "".equals(titre)) {
 				throw new IllegalArgumentException("Veuillez saisir un titre");
 			}
@@ -71,18 +71,20 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 				throw new IllegalArgumentException("Veuillez saisir un prix");
 			}
 			else if(visuel == null) {
-				throw new IllegalAccessException("Veuillez donner un visuel");
+				throw new IllegalArgumentException("Veuillez donner un visuel");
 			}
 			else if(periodicite == null ) {
 				throw new IllegalArgumentException("Veuillez selectionner une périodicité");
 			}
 			else {
-				Revue revue = new Revue(titre, description, Integer.parseInt(tarif), null, periodicite);
-				dao.getRevueDAO().create(revue);	
+				try {
+					Revue revue = new Revue(titre, description, Integer.parseInt(tarif), null, periodicite);
+					dao.getRevueDAO().create(revue);
+					this.tblRevue.getItems().add(revue);
+				}catch(Exception sqle) {
+					System.out.println(sqle.getMessage());
+				}
 			}
-		}catch(Exception sqle) {
-			System.out.println(sqle.getMessage());
-		}
 	}
 	
 	
@@ -107,6 +109,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 		
 		try {
 			dao.getRevueDAO().delete(revue);
+			this.tblRevue.getItems().remove(revue);
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
@@ -117,11 +120,6 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 		DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		
 		try {
-			TableColumn<Revue, String> titre = new TableColumn<>("titre");
-			TableColumn<Revue, String> description = new TableColumn<>("description");
-			TableColumn<Revue, Integer> tarif = new TableColumn<>("tarif");
-			TableColumn<Revue, Periodicite> periodicite = new TableColumn<>("periodicite");
-			
 			titre.setCellValueFactory(new PropertyValueFactory<Revue, String>("titre"));
 			description.setCellValueFactory(new PropertyValueFactory<Revue, String>("description"));
 			tarif.setCellValueFactory(new PropertyValueFactory<Revue, Integer>("tarif"));
@@ -140,7 +138,8 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
-
+		this.voirRevue();
+		
         DAOFactory dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
         try {
 			this.cboxPeriodicite.setItems(FXCollections.observableArrayList(dao.getPeriodiciteDAO().findAll()));

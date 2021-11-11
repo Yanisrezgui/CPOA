@@ -2,6 +2,8 @@ package controleur;
 
 
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,6 +14,7 @@ import dao.Persistance;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,7 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modele.Periodicite;
 
-public class ControleurPeriodicite implements ChangeListener<Periodicite>{
+public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initializable{
 	@FXML
 	private TextField txtLibelle;
 	@FXML
@@ -43,7 +46,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>{
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
 		Matcher matcherLibelle = pattern.matcher(libelle);
 		
-		try {
+		
 			if(libelle == null || "".equals(libelle)) {
 				throw new IllegalArgumentException("Saisir un libelle");
 			}
@@ -51,26 +54,26 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>{
 				throw new IllegalArgumentException("Saisir un libelle valide");
 			}
 			else {
-				Periodicite periodicite = new Periodicite(libelle);
-				dao.getPeriodiciteDAO().create(periodicite);
-				
+				try {
+					Periodicite periodicite = new Periodicite(libelle);
+					dao.getPeriodiciteDAO().create(periodicite);
+					this.tblPeriodicite.getItems().add(periodicite);
+				}catch(Exception sqle) {
+					System.out.println(sqle.getMessage());
+				}
 			}
-		}catch(Exception sqle) {
-			System.out.println(sqle.getMessage());
-		}
 	}
 	
 	public void voirPeriodicite() {
 		DAOFactory dao=DAOFactory.getDAOFactory(Persistance.MYSQL);
 		
 		try {
-			TableColumn<Periodicite, Integer> idLibelle =new TableColumn<>("id");
-			TableColumn<Periodicite, String> Libelle = new TableColumn<>("Libelle");
 			
-			idLibelle.setCellValueFactory(new PropertyValueFactory<Periodicite, Integer>("id"));
-			Libelle.setCellValueFactory(new PropertyValueFactory<Periodicite, String>("Libelle"));
 			
-			this.tblPeriodicite.getColumns().setAll(idLibelle,Libelle);
+			id.setCellValueFactory(new PropertyValueFactory<Periodicite, Integer>("idPeriodicite"));
+			libelle.setCellValueFactory(new PropertyValueFactory<Periodicite, String>("Libelle"));
+			
+			this.tblPeriodicite.getColumns().setAll(id,libelle);
 			this.tblPeriodicite.getItems().addAll(dao.getPeriodiciteDAO().findAll());
 			this.tblPeriodicite.getSelectionModel().selectedItemProperty().addListener(this);
 					
@@ -84,6 +87,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>{
 	
 		try {
 			dao.getPeriodiciteDAO().delete(periodicite);
+			this.tblPeriodicite.getItems().remove(periodicite);
 		} catch(Exception sqle) {
 			System.out.println(sqle.getMessage());
 		}
@@ -101,6 +105,11 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>{
 	@Override
 	public void changed(ObservableValue<? extends Periodicite> observable, Periodicite oldValue, Periodicite newValue) {
 		this.btnSupprimer.setDisable(newValue == null);	
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		this.voirPeriodicite();
 	}
 	
 }
