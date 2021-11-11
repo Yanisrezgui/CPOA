@@ -33,8 +33,7 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	private TableColumn<Periodicite, Integer> id;
 	@FXML
 	private TableColumn<Periodicite, String> libelle;
-	private static ControleurMenu controleurMenu;
-	private static DAOFactory dao;
+	private DAOFactory dao;
 	
 	
 	public void ajouterPeriodicite() {
@@ -100,11 +99,11 @@ public class ControleurPeriodicite implements ChangeListener<Periodicite>, Initi
 	public void setVue(Stage vue) {
 		this.vue = vue;
 	}
-	public static DAOFactory getDao() {
+	public DAOFactory getDao() {
 		return dao;
 	}
-	public static void setDao(DAOFactory dao) {
-		ControleurPeriodicite.dao = dao;
+	public void setDao(DAOFactory dao) {
+		this.dao = dao;
 	}
 
 	@Override
