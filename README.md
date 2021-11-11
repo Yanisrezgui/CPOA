@@ -15,5 +15,6 @@ Ce qui fonctionne :
 
 Ce qui ne fonctionne pas :
 - L'import d'un fichier client CSV n'as pas été fait 
-- La modification d'un client n'as pas été implémenté par manque de temps dans les vues
-- 
+- La modification d'un client n'as pas été implémenté dans les vues 
+- La selection de la solution de persistance ne fonctionne pas ce qui entraine un problème au nivau de l'affichage des donnes dans le TableView
+
