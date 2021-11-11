@@ -1,5 +1,6 @@
 package controleur;
 
+import dao.DAOFactory;
 import dao.Persistance;
 import dao.SolutionPersistance;
 import javafx.fxml.FXML;
@@ -33,21 +34,22 @@ public class ControleurMenu {
 		VuePeriodicite vue = new VuePeriodicite();
 	}
 	
-	public  Persistance choixPersistance() {
+	public  DAOFactory choixPersistance() {
+		DAOFactory dao;
 		
 		if(!chxListeMemoire.isSelected() && !chxMysql.isSelected()) {
 			throw new IllegalArgumentException("Selectionner une persistance");
 		}
 		else if(chxMysql.isSelected()) {
 			chxListeMemoire.setDisable(true);
-			persistance.setPersistance(Persistance.MYSQL);
+			 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
 		}
 		else {
 			chxMysql.setDisable(true);
-			persistance.setPersistance(Persistance.LISTE_MEMOIRE); 
+			dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
 		}
 		
-		return persistance.getPersistance();
+		return dao;
 		
 	}
 }
