@@ -43,8 +43,10 @@ public class ControleurMenu implements Initializable {
 		}
 		else if(rdbMysql.isSelected()) {
 			 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+			 rdbListeMemoire.setDisable(true);
 		}
 		else {
+			rdbMysql.setDisable(true);
 			dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
 		}
 		VuePeriodicite vue = new VuePeriodicite();
