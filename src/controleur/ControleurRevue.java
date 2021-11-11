@@ -48,6 +48,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	@FXML 
 	private TableColumn<Revue, Periodicite> periodicite;
 	private static ControleurMenu controleurMenu;
+	private DAOFactory dao;
 	
 	
 	
@@ -58,7 +59,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 		String visuel = "test";
 		Periodicite periodicite = this.cboxPeriodicite.getSelectionModel().getSelectedItem();
 		
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 		
 		
 			if(titre == null || "".equals(titre)) {
@@ -105,7 +106,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	
 	 
 	public void supprimerRevue() {
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 		
 		try {
 			dao.getRevueDAO().delete(this.tblRevue.getSelectionModel().getSelectedItem());
@@ -117,7 +118,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	
 	
 	public void voirRevue() {
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 		
 		try {
 			titre.setCellValueFactory(new PropertyValueFactory<Revue, String>("titre"));
@@ -140,7 +141,7 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
     public void initialize(URL location, ResourceBundle resources) {
 		this.voirRevue();
 		
-        DAOFactory dao = controleurMenu.choixPersistance();
+       
         try {
 			this.cboxPeriodicite.setItems(FXCollections.observableArrayList(dao.getPeriodiciteDAO().findAll()));
 		} catch (Exception e) {
@@ -155,6 +156,12 @@ public class ControleurRevue implements Initializable, ChangeListener<Revue> {
 	}
 	public Stage getVue() {
 		return vue;
+	}
+	public DAOFactory getDao() {
+		return dao;
+	}
+	public void setDao(DAOFactory dao) {
+		this.dao = dao;
 	}
 
 

@@ -55,6 +55,7 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 	@FXML
 	private Button btnSupprimer;
 	public static ControleurMenu controleurMenu;
+	private DAOFactory dao;
 	
 	public void ajouterClient(){
 		String nom = this.txtNom.getText();
@@ -65,7 +66,7 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 		String ville = this.txtVille.getText();
 		String pays = this.txtPays.getText();
 		
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 		
 		Pattern pattern = Pattern.compile("^[A-Za-z-]+$");
 		Matcher matcherNom = pattern.matcher(nom);
@@ -140,7 +141,7 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 	
 	
 	public void supprimerClient() {
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 	
 		try {
 			dao.getClientDAO().delete(this.tblClient.getSelectionModel().getSelectedItem());
@@ -152,7 +153,7 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 	
 	
 	public void voirClient() {
-		DAOFactory dao = controleurMenu.choixPersistance();
+	
 		
 		try {
 			nom.setCellValueFactory(new PropertyValueFactory<Client, String>("nom"));
@@ -184,6 +185,12 @@ public class ControleurClient implements ChangeListener<Client>, Initializable {
 	}
 	public void setVue(Stage vue) {
 		this.vue = vue;
+	}
+	public DAOFactory getDao() {
+		return dao;
+	}
+	public void setDao(DAOFactory dao) {
+		this.dao = dao;
 	}
 
 

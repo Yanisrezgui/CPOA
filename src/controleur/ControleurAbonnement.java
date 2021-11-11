@@ -48,6 +48,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	@FXML
 	private Button btnSupprimer;
 	private static ControleurMenu controleurMenu;
+	private DAOFactory dao;
 	
 	public void ajouterAbonnement() {
 		LocalDate datedeb = this.datepicDeb.getValue();
@@ -55,7 +56,6 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 		Client client = this.cbxClient.getValue();
 		Revue revue = this.cbxRevue.getValue();
 		
-		DAOFactory dao = controleurMenu.choixPersistance();
 		
 		
 			if(datedeb == null) {
@@ -89,7 +89,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	}
 
 	public void supprimerAbonnement() {
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 	
 		try {
 			dao.getAbonnementDAO().delete(this.tblAbonnement.getSelectionModel().getSelectedItem());
@@ -101,7 +101,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	
 	
 	public void voirAbonnement() {
-		DAOFactory dao = controleurMenu.choixPersistance();
+		
 		
 		try {			
 			id.setCellValueFactory(new PropertyValueFactory<Abonnement, Integer>("idAbonnement"));
@@ -125,7 +125,7 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
     public void initialize(URL location, ResourceBundle resources) {
 		this.voirAbonnement();
 
-        DAOFactory dao = controleurMenu.choixPersistance();
+       
         try {
 			this.cbxClient.setItems(FXCollections.observableArrayList(dao.getClientDAO().findAll()));
 			this.cbxRevue.setItems(FXCollections.observableArrayList(dao.getRevueDAO().findAll()));
@@ -141,6 +141,12 @@ public class ControleurAbonnement implements Initializable, ChangeListener<Abonn
 	}
 	public void setVue(Stage vue) {
 		this.vue = vue;
+	}
+	public DAOFactory getDao() {
+		return dao;
+	}
+	public void setDao(DAOFactory dao) {
+		this.dao = dao;
 	}
 
 	@Override

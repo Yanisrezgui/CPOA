@@ -28,15 +28,57 @@ public class ControleurMenu implements Initializable {
 	
 	
 	public void lanceRevue() {
-		VueRevue vue = new VueRevue();
+		
+		if(choixpers.getSelectedToggle() == null) {
+			throw new IllegalArgumentException("Selectionner une persistance");
+		}
+		else {
+			if(rdbMysql.isSelected()) {
+				 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+			}
+			else {
+				rdbMysql.setDisable(true);
+				dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
+			}
+			VueRevue vue = new VueRevue();
+			vue.getControleur().setDao(dao);
+		}
 	}
 	
 	public void lanceClient() {
-		VueClient vue = new VueClient();
+		
+		if(choixpers.getSelectedToggle() == null) {
+			throw new IllegalArgumentException("Selectionner une persistance");
+		}
+		else {
+			if(rdbMysql.isSelected()) {
+				 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+			}
+			else {
+				rdbMysql.setDisable(true);
+				dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
+			}
+			VueClient vue = new VueClient();
+			vue.getControleur().setDao(dao);
+		}
 	}
 
 	public void lanceAbonnement() {
-		VueAbonnement vue = new VueAbonnement();
+		
+		if(choixpers.getSelectedToggle() == null) {
+			throw new IllegalArgumentException("Selectionner une persistance");
+		}
+		else {
+			if(rdbMysql.isSelected()) {
+				 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
+			}
+			else {
+				rdbMysql.setDisable(true);
+				dao = DAOFactory.getDAOFactory(Persistance.LISTE_MEMOIRE); 
+			}
+			VueAbonnement vue = new VueAbonnement();
+			vue.getControleur().setDao(dao);
+		}
 	}
 	
 	public void lancePeriodicite() {
@@ -47,7 +89,6 @@ public class ControleurMenu implements Initializable {
 		else {
 			if(rdbMysql.isSelected()) {
 				 dao = DAOFactory.getDAOFactory(Persistance.MYSQL);
-				 rdbListeMemoire.setDisable(true);
 			}
 			else {
 				rdbMysql.setDisable(true);
